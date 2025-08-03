@@ -1,9 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { 
-  DollarSign, 
   Calendar, 
   Target, 
   TrendingUp,
@@ -13,13 +11,10 @@ import {
   FileText,
   Copy,
   Download,
-  Save,
   Loader2,
   CheckCircle,
-  AlertCircle,
   Info,
   Search,
-  MousePointer,
   Clock,
   Car
 } from 'lucide-react'
@@ -43,10 +38,26 @@ interface NissanStrategy {
   created_at: string
 }
 
+interface GeneratedCampaign {
+  successProbability: number
+  executiveSummary: string
+  budgetAllocation: any
+  performanceProjections: any
+  googleAdsContent: {
+    headlines: string[]
+    descriptions: string[]
+    keywords: any
+    callouts: string[]
+    sitelinks: any[]
+  }
+  optimizationRecommendations: any
+  exportText: string
+}
+
 export default function NissanCampaignCreator() {
   const [strategies, setStrategies] = useState<NissanStrategy[]>([])
   const [isGenerating, setIsGenerating] = useState(false)
-  const [generatedCampaign, setGeneratedCampaign] = useState<any>(null)
+  const [generatedCampaign, setGeneratedCampaign] = useState<GeneratedCampaign | null>(null)
   const [activeTab, setActiveTab] = useState('input')
   
   // Form data state - simplified for Nissan focus
