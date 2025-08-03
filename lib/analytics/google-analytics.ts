@@ -43,8 +43,8 @@ export class GoogleAnalytics {
 
     // Initialize dataLayer and gtag
     window.dataLayer = window.dataLayer || []
-    window.gtag = function gtag() {
-      window.dataLayer.push(arguments)
+    window.gtag = function(...args: any[]) {
+      window.dataLayer.push(args)
     }
 
     window.gtag('js', new Date())
