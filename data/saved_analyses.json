@@ -1,0 +1,136 @@
+[
+  {
+    "id": "1c1261fe-f20c-4fc0-b06e-7dbbbc05438f",
+    "session_name": "Nissan of Wichita Falls - Campaign Analysis",
+    "session_id": "56c21bc2-d5a1-4abe-a4f6-b437fea03189",
+    "analytics_data": {
+      "totalImpressions": 90368,
+      "totalClicks": 1296,
+      "totalCost": 1283.98,
+      "totalConversions": 45,
+      "averageCTR": 1.43,
+      "averageCPC": 0.99,
+      "averageCPA": 28.53,
+      "campaignCount": 5,
+      "topPerformingCampaigns": [
+        {
+          "name": "Website Traffic Campaign PMAX",
+          "impressions": 13765,
+          "clicks": 413,
+          "cost": 547.33,
+          "conversions": 18,
+          "ctr": 3,
+          "cpc": 1.33,
+          "cpa": 30.41
+        },
+        {
+          "name": "VLA - New Vehicles",
+          "impressions": 19073,
+          "clicks": 288,
+          "cost": 296.65,
+          "conversions": 12,
+          "ctr": 1.51,
+          "cpc": 1.03,
+          "cpa": 24.72
+        },
+        {
+          "name": "VLA - PMax - Trucks & SUVs",
+          "impressions": 32396,
+          "clicks": 311,
+          "cost": 222.55,
+          "conversions": 8,
+          "ctr": 0.96,
+          "cpc": 0.72,
+          "cpa": 27.82
+        }
+      ],
+      "underperformingCampaigns": [
+        {
+          "name": "VLA - Used Sedans & Fuel Efficient",
+          "impressions": 12651,
+          "clicks": 129,
+          "cost": 97.82,
+          "conversions": 3,
+          "ctr": 1.02,
+          "cpc": 0.76,
+          "cpa": 32.61
+        },
+        {
+          "name": "VLA - Used Deals & Specialties",
+          "impressions": 12403,
+          "clicks": 155,
+          "cost": 119.64,
+          "conversions": 4,
+          "ctr": 1.25,
+          "cpc": 0.77,
+          "cpa": 29.91
+        }
+      ],
+      "deviceBreakdown": {
+        "mobile": 1146,
+        "desktop": 136,
+        "tablet": 14
+      },
+      "timeBasedPerformance": [
+        {
+          "date": "2025-07-29",
+          "impressions": 18074,
+          "clicks": 259,
+          "ctr": 1.43
+        },
+        {
+          "date": "2025-07-30",
+          "impressions": 18074,
+          "clicks": 259,
+          "ctr": 1.43
+        },
+        {
+          "date": "2025-07-31",
+          "impressions": 18074,
+          "clicks": 259,
+          "ctr": 1.43
+        },
+        {
+          "date": "2025-08-01",
+          "impressions": 18074,
+          "clicks": 259,
+          "ctr": 1.43
+        },
+        {
+          "date": "2025-08-02",
+          "impressions": 18074,
+          "clicks": 260,
+          "ctr": 1.44
+        }
+      ]
+    },
+    "ai_insights": {
+      "campaign_performance": "#### Top Campaigns Analysis\n- **Website Traffic Campaign PMAX**: With a CTR of 3% and CPA of $30.41, this campaign is the top performer. The high CTR indicates strong ad relevance and engagement, likely due to well-targeted keywords and compelling ad copy. The CPA is slightly above the average ($28.53), suggesting room for cost optimization.\n- **VLA - New Vehicles**: This campaign has a decent CTR of 1.51% and a lower CPA of $24.72, indicating efficient cost management and effective targeting for new vehicle buyers.\n- **VLA - PMax - Trucks & SUVs**: Despite having the highest impressions (32,396), the CTR is only 0.96%. However, the low CPC ($0.72) and CPA ($27.82) suggest cost efficiency, though engagement could be improved.\n#### Underperforming Campaigns Analysis\n- **VLA - Used Sedans & Fuel Efficient**: With a CTR of 1.02% and CPA of $32.61, this campaign struggles with engagement and cost efficiency. The low conversion rate (3) indicates a mismatch in targeting or ad content.\n- **VLA - Used Deals & Specialties**: A CTR of 1.25% and CPA of $29.91 show moderate performance, but the conversion rate (4) is low, suggesting potential issues with ad relevance or landing page experience.\n#### Performance Gap Analysis\nThe gap between the best (3% CTR) and worst (1.02% CTR) campaigns highlights the need for targeted improvements in ad relevance and audience targeting for underperforming campaigns.\n#### Overall CTR Significance\nThe current overall CTR of 1.43% is below the automotive industry benchmark of 2-3%. This indicates a need for optimization in ad targeting and creative strategies to enhance engagement.\n#### Cost Efficiency Patterns\nThe average CPC of $0.99 is competitive, but the CPA variance across campaigns suggests opportunities for reallocating budget towards more cost-effective campaigns like VLA - New Vehicles.\n### 2. OPTIMIZATION RECOMMENDATIONS\n#### Potential Impact of Optimization\n- **VLA - Used Sedans & Fuel Efficient**: By refining audience targeting and improving ad copy, a 20% increase in CTR could be achieved, potentially reducing CPA to $26.09 and increasing conversions by 2-3.\n- **VLA - Used Deals & Specialties**: Enhancing ad relevance and landing page experience could improve CTR by 15%, reducing CPA to $25.42 and increasing conversions by 1-2.\n#### ROI Projections\n- **Website Traffic Campaign PMAX**: Optimizing ad copy and targeting could boost CTR by 10%, potentially increasing conversions by 2-3 and reducing CPA to $27.37, enhancing ROI by approximately 5%.\n#### Confidence Levels\n- **High Confidence**: For Website Traffic Campaign PMAX and VLA - New Vehicles due to current performance trends.\n- **Moderate Confidence**: For underperforming campaigns, contingent on successful implementation of targeting and creative improvements.\n### 3. DEVICE & TIMING INSIGHTS\n#### Mobile Dominance Analysis\nWith 88.4% of clicks from mobile devices, optimizing mobile ad formats and landing pages is crucial. Consider increasing mobile bid adjustments by 10% to capitalize on this trend.\n#### Time-Based Optimization\nThe consistent performance over the last 5 days suggests stable engagement. Implementing dayparting strategies to increase bids during peak hours (e.g., 12 PM - 6 PM) could enhance performance.\n### 4. COMPETITIVE STRATEGY\n#### Leveraging High-Performing Campaigns\n- **Against Local Competitors**: Emphasize the strengths of high-performing campaigns like Website Traffic Campaign PMAX to capture market share from Herb Easley Chevrolet and Brodie Multi-Brand.\n- **Budget Reallocation**: Shift $200 from underperforming campaigns to VLA - New Vehicles to maximize ROI and market penetration.\n#### Strategies for Improvement\n- **Underperforming Campaigns**: Conduct A/B testing on ad creatives and refine audience segments to improve engagement and conversion rates.\n### 5. TRANSPARENCY & METHODOLOGY\n#### Metric Calculations\n- **CTR**: Calculated as (Total Clicks / Total Impressions) * 100.\n- **CPC**: Calculated as Total Cost / Total Clicks.\n- **CPA**: Calculated as Total Cost / Total Conversions.\n#### Data Quality Assessment\nThe data is consistent and reliable, with clear trends and performance metrics. However, continuous monitoring and adjustments are recommended to maintain data integrity.\n#### Industry Benchmark Comparisons\nThe current CTR and CPA are compared against industry standards to identify areas for improvement and set realistic performance goals.\nBy implementing these data-driven recommendations, Nissan of Wichita Falls can enhance its digital advertising performance, effectively counter online threats, and dominate the local market.",
+      "optimization_recommendations": "#### Potential Impact of Optimization\n- **VLA - Used Sedans & Fuel Efficient**: By refining audience targeting and improving ad copy, a 20% increase in CTR could be achieved, potentially reducing CPA to $26.09 and increasing conversions by 2-3.\n- **VLA - Used Deals & Specialties**: Enhancing ad relevance and landing page experience could improve CTR by 15%, reducing CPA to $25.42 and increasing conversions by 1-2.\n#### ROI Projections\n- **Website Traffic Campaign PMAX**: Optimizing ad copy and targeting could boost CTR by 10%, potentially increasing conversions by 2-3 and reducing CPA to $27.37, enhancing ROI by approximately 5%.\n#### Confidence Levels\n- **High Confidence**: For Website Traffic Campaign PMAX and VLA - New Vehicles due to current performance trends.\n- **Moderate Confidence**: For underperforming campaigns, contingent on successful implementation of targeting and creative improvements.\n### 3. DEVICE & TIMING INSIGHTS\n#### Mobile Dominance Analysis\nWith 88.4% of clicks from mobile devices, optimizing mobile ad formats and landing pages is crucial. Consider increasing mobile bid adjustments by 10% to capitalize on this trend.\n#### Time-Based Optimization\nThe consistent performance over the last 5 days suggests stable engagement. Implementing dayparting strategies to increase bids during peak hours (e.g., 12 PM - 6 PM) could enhance performance.\n### 4. COMPETITIVE STRATEGY\n#### Leveraging High-Performing Campaigns\n- **Against Local Competitors**: Emphasize the strengths of high-performing campaigns like Website Traffic Campaign PMAX to capture market share from Herb Easley Chevrolet and Brodie Multi-Brand.\n- **Budget Reallocation**: Shift $200 from underperforming campaigns to VLA - New Vehicles to maximize ROI and market penetration.\n#### Strategies for Improvement\n- **Underperforming Campaigns**: Conduct A/B testing on ad creatives and refine audience segments to improve engagement and conversion rates.\n### 5. TRANSPARENCY & METHODOLOGY\n#### Metric Calculations\n- **CTR**: Calculated as (Total Clicks / Total Impressions) * 100.\n- **CPC**: Calculated as Total Cost / Total Clicks.\n- **CPA**: Calculated as Total Cost / Total Conversions.\n#### Data Quality Assessment\nThe data is consistent and reliable, with clear trends and performance metrics. However, continuous monitoring and adjustments are recommended to maintain data integrity.\n#### Industry Benchmark Comparisons\nThe current CTR and CPA are compared against industry standards to identify areas for improvement and set realistic performance goals.\nBy implementing these data-driven recommendations, Nissan of Wichita Falls can enhance its digital advertising performance, effectively counter online threats, and dominate the local market.",
+      "competitive_strategy": "#### Leveraging High-Performing Campaigns\n- **Against Local Competitors**: Emphasize the strengths of high-performing campaigns like Website Traffic Campaign PMAX to capture market share from Herb Easley Chevrolet and Brodie Multi-Brand.\n- **Budget Reallocation**: Shift $200 from underperforming campaigns to VLA - New Vehicles to maximize ROI and market penetration.\n#### Strategies for Improvement\n- **Underperforming Campaigns**: Conduct A/B testing on ad creatives and refine audience segments to improve engagement and conversion rates.\n### 5. TRANSPARENCY & METHODOLOGY\n#### Metric Calculations\n- **CTR**: Calculated as (Total Clicks / Total Impressions) * 100.\n- **CPC**: Calculated as Total Cost / Total Clicks.\n- **CPA**: Calculated as Total Cost / Total Conversions.\n#### Data Quality Assessment\nThe data is consistent and reliable, with clear trends and performance metrics. However, continuous monitoring and adjustments are recommended to maintain data integrity.\n#### Industry Benchmark Comparisons\nThe current CTR and CPA are compared against industry standards to identify areas for improvement and set realistic performance goals.\nBy implementing these data-driven recommendations, Nissan of Wichita Falls can enhance its digital advertising performance, effectively counter online threats, and dominate the local market.",
+      "device_timing_insights": "#### Mobile Dominance Analysis\nWith 88.4% of clicks from mobile devices, optimizing mobile ad formats and landing pages is crucial. Consider increasing mobile bid adjustments by 10% to capitalize on this trend.\n#### Time-Based Optimization\nThe consistent performance over the last 5 days suggests stable engagement. Implementing dayparting strategies to increase bids during peak hours (e.g., 12 PM - 6 PM) could enhance performance.\n### 4. COMPETITIVE STRATEGY\n#### Leveraging High-Performing Campaigns\n- **Against Local Competitors**: Emphasize the strengths of high-performing campaigns like Website Traffic Campaign PMAX to capture market share from Herb Easley Chevrolet and Brodie Multi-Brand.\n- **Budget Reallocation**: Shift $200 from underperforming campaigns to VLA - New Vehicles to maximize ROI and market penetration.\n#### Strategies for Improvement\n- **Underperforming Campaigns**: Conduct A/B testing on ad creatives and refine audience segments to improve engagement and conversion rates.\n### 5. TRANSPARENCY & METHODOLOGY\n#### Metric Calculations\n- **CTR**: Calculated as (Total Clicks / Total Impressions) * 100.\n- **CPC**: Calculated as Total Cost / Total Clicks.\n- **CPA**: Calculated as Total Cost / Total Conversions.\n#### Data Quality Assessment\nThe data is consistent and reliable, with clear trends and performance metrics. However, continuous monitoring and adjustments are recommended to maintain data integrity.\n#### Industry Benchmark Comparisons\nThe current CTR and CPA are compared against industry standards to identify areas for improvement and set realistic performance goals.\nBy implementing these data-driven recommendations, Nissan of Wichita Falls can enhance its digital advertising performance, effectively counter online threats, and dominate the local market.",
+      "transparency_methodology": "#### Metric Calculations\n- **CTR**: Calculated as (Total Clicks / Total Impressions) * 100.\n- **CPC**: Calculated as Total Cost / Total Clicks.\n- **CPA**: Calculated as Total Cost / Total Conversions.\n#### Data Quality Assessment\nThe data is consistent and reliable, with clear trends and performance metrics. However, continuous monitoring and adjustments are recommended to maintain data integrity.\n#### Industry Benchmark Comparisons\nThe current CTR and CPA are compared against industry standards to identify areas for improvement and set realistic performance goals.\nBy implementing these data-driven recommendations, Nissan of Wichita Falls can enhance its digital advertising performance, effectively counter online threats, and dominate the local market.",
+      "full_analysis": "### 1. CAMPAIGN PERFORMANCE INSIGHTS\n\n#### Top Campaigns Analysis\n- **Website Traffic Campaign PMAX**: With a CTR of 3% and CPA of $30.41, this campaign is the top performer. The high CTR indicates strong ad relevance and engagement, likely due to well-targeted keywords and compelling ad copy. The CPA is slightly above the average ($28.53), suggesting room for cost optimization.\n- **VLA - New Vehicles**: This campaign has a decent CTR of 1.51% and a lower CPA of $24.72, indicating efficient cost management and effective targeting for new vehicle buyers.\n- **VLA - PMax - Trucks & SUVs**: Despite having the highest impressions (32,396), the CTR is only 0.96%. However, the low CPC ($0.72) and CPA ($27.82) suggest cost efficiency, though engagement could be improved.\n\n#### Underperforming Campaigns Analysis\n- **VLA - Used Sedans & Fuel Efficient**: With a CTR of 1.02% and CPA of $32.61, this campaign struggles with engagement and cost efficiency. The low conversion rate (3) indicates a mismatch in targeting or ad content.\n- **VLA - Used Deals & Specialties**: A CTR of 1.25% and CPA of $29.91 show moderate performance, but the conversion rate (4) is low, suggesting potential issues with ad relevance or landing page experience.\n\n#### Performance Gap Analysis\nThe gap between the best (3% CTR) and worst (1.02% CTR) campaigns highlights the need for targeted improvements in ad relevance and audience targeting for underperforming campaigns.\n\n#### Overall CTR Significance\nThe current overall CTR of 1.43% is below the automotive industry benchmark of 2-3%. This indicates a need for optimization in ad targeting and creative strategies to enhance engagement.\n\n#### Cost Efficiency Patterns\nThe average CPC of $0.99 is competitive, but the CPA variance across campaigns suggests opportunities for reallocating budget towards more cost-effective campaigns like VLA - New Vehicles.\n\n### 2. OPTIMIZATION RECOMMENDATIONS\n\n#### Potential Impact of Optimization\n- **VLA - Used Sedans & Fuel Efficient**: By refining audience targeting and improving ad copy, a 20% increase in CTR could be achieved, potentially reducing CPA to $26.09 and increasing conversions by 2-3.\n- **VLA - Used Deals & Specialties**: Enhancing ad relevance and landing page experience could improve CTR by 15%, reducing CPA to $25.42 and increasing conversions by 1-2.\n\n#### ROI Projections\n- **Website Traffic Campaign PMAX**: Optimizing ad copy and targeting could boost CTR by 10%, potentially increasing conversions by 2-3 and reducing CPA to $27.37, enhancing ROI by approximately 5%.\n\n#### Confidence Levels\n- **High Confidence**: For Website Traffic Campaign PMAX and VLA - New Vehicles due to current performance trends.\n- **Moderate Confidence**: For underperforming campaigns, contingent on successful implementation of targeting and creative improvements.\n\n### 3. DEVICE & TIMING INSIGHTS\n\n#### Mobile Dominance Analysis\nWith 88.4% of clicks from mobile devices, optimizing mobile ad formats and landing pages is crucial. Consider increasing mobile bid adjustments by 10% to capitalize on this trend.\n\n#### Time-Based Optimization\nThe consistent performance over the last 5 days suggests stable engagement. Implementing dayparting strategies to increase bids during peak hours (e.g., 12 PM - 6 PM) could enhance performance.\n\n### 4. COMPETITIVE STRATEGY\n\n#### Leveraging High-Performing Campaigns\n- **Against Local Competitors**: Emphasize the strengths of high-performing campaigns like Website Traffic Campaign PMAX to capture market share from Herb Easley Chevrolet and Brodie Multi-Brand.\n- **Budget Reallocation**: Shift $200 from underperforming campaigns to VLA - New Vehicles to maximize ROI and market penetration.\n\n#### Strategies for Improvement\n- **Underperforming Campaigns**: Conduct A/B testing on ad creatives and refine audience segments to improve engagement and conversion rates.\n\n### 5. TRANSPARENCY & METHODOLOGY\n\n#### Metric Calculations\n- **CTR**: Calculated as (Total Clicks / Total Impressions) * 100.\n- **CPC**: Calculated as Total Cost / Total Clicks.\n- **CPA**: Calculated as Total Cost / Total Conversions.\n\n#### Data Quality Assessment\nThe data is consistent and reliable, with clear trends and performance metrics. However, continuous monitoring and adjustments are recommended to maintain data integrity.\n\n#### Industry Benchmark Comparisons\nThe current CTR and CPA are compared against industry standards to identify areas for improvement and set realistic performance goals.\n\nBy implementing these data-driven recommendations, Nissan of Wichita Falls can enhance its digital advertising performance, effectively counter online threats, and dominate the local market."
+    },
+    "dealership_context": {
+      "name": "Nissan of Wichita Falls",
+      "address": "4000 Kell West Blvd, Wichita Falls, TX 76309",
+      "mission": "Dominate Wichita Falls market, beat online providers, crush local competition",
+      "competitors": [
+        "Herb Easley Chevrolet",
+        "Brodie Multi-Brand",
+        "Foundation Buick GMC",
+        "Carvana",
+        "CarMax",
+        "Vroom"
+      ]
+    },
+    "created_at": "2025-08-03T19:14:15.287Z",
+    "total_impressions": 90368,
+    "total_clicks": 1296,
+    "total_cost": 1283.98,
+    "average_ctr": 1.43,
+    "average_cpc": 0.99,
+    "average_cpa": 28.53
+  }
+]

@@ -1,0 +1,415 @@
+<!-- 
+====================================
+🏢 NISSAN OF WICHITA FALLS 
+📊 VLA ANALYTICS TRACKING SCRIPT
+====================================
+
+Copy this ENTIRE script and paste it in the <head> section 
+of your website, right before the closing </head> tag.
+
+This integrates:
+✅ Google Analytics 4 (Property: 376755287)
+✅ Google Ads Conversion Tracking (AW-696993687) 
+✅ VLA Custom Analytics System
+✅ Vehicle-specific tracking
+✅ Lead generation tracking
+-->
+
+<!-- Google Analytics 4 + Google Ads -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  
+  // NOTE: You'll need to get your actual GA4 Measurement ID (G-XXXXXXXXXX)
+  // The Property ID (376755287) is different from the Measurement ID
+  gtag('config', 'G-MEASUREMENT_ID'); // Replace with actual GA4 Measurement ID
+  
+  // Google Ads Conversion Tracking
+  gtag('config', 'AW-696993687');
+</script>
+
+<!-- VLA Custom Analytics Integration -->
+<script>
+// =================================
+// 🎯 VLA CONFIGURATION
+// =================================
+const VLA_CONFIG = {
+  CLIENT_ID: 'nissan-wichita-falls',
+  API_ENDPOINT: 'https://your-vla-dashboard.vercel.app/api/analytics/track', // Update with your actual domain
+  GA4_MEASUREMENT_ID: 'G-MEASUREMENT_ID', // Replace with actual GA4 Measurement ID
+  ADS_CONVERSION_ID: 'AW-696993687',
+  DEBUG: true // Set to false in production
+};
+
+// =================================
+// 📊 ANALYTICS FUNCTIONS
+// =================================
+
+// Send event to VLA system
+async function sendToVLA(eventData) {
+  try {
+    const response = await fetch(VLA_CONFIG.API_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        client_id: VLA_CONFIG.CLIENT_ID,
+        session_id: getSessionId(),
+        user_agent: navigator.userAgent,
+        timestamp: new Date().toISOString(),
+        ...eventData
+      })
+    });
+    
+    if (VLA_CONFIG.DEBUG) {
+      console.log('VLA Event Sent:', eventData);
+    }
+  } catch (error) {
+    if (VLA_CONFIG.DEBUG) {
+      console.error('VLA Error:', error);
+    }
+  }
+}
+
+// Generate session ID
+function getSessionId() {
+  let sessionId = sessionStorage.getItem('vla_session_id');
+  if (!sessionId) {
+    sessionId = 'vla_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    sessionStorage.setItem('vla_session_id', sessionId);
+  }
+  return sessionId;
+}
+
+// =================================
+// 🚗 VEHICLE TRACKING
+// =================================
+
+// Track vehicle page views
+function trackVehicleView(vehicleData) {
+  // Google Analytics 4
+  gtag('event', 'view_item', {
+    currency: 'USD',
+    value: vehicleData.price || 0,
+    items: [{
+      item_id: vehicleData.id || vehicleData.vin || 'unknown',
+      item_name: `${vehicleData.year || ''} ${vehicleData.make || ''} ${vehicleData.model || ''}`.trim(),
+      item_category: 'Vehicle',
+      item_brand: vehicleData.make || 'Nissan',
+      price: vehicleData.price || 0,
+      quantity: 1
+    }]
+  });
+  
+  // VLA Analytics
+  sendToVLA({
+    event_name: 'vehicle_view',
+    event_data: {
+      vehicle_id: vehicleData.id,
+      vin: vehicleData.vin,
+      make: vehicleData.make || 'Nissan',
+      model: vehicleData.model,
+      year: vehicleData.year,
+      trim: vehicleData.trim,
+      price: vehicleData.price,
+      mileage: vehicleData.mileage,
+      color: vehicleData.color,
+      fuel_type: vehicleData.fuel_type,
+      transmission: vehicleData.transmission
+    },
+    page_url: window.location.href,
+    page_title: document.title
+  });
+}
+
+// =================================
+// 📞 LEAD GENERATION TRACKING
+// =================================
+
+// Track contact form submissions
+function trackLeadGeneration(leadData) {
+  const leadValue = leadData.vehicle_price ? (leadData.vehicle_price * 0.02) : 500; // 2% of vehicle price or $500
+  
+  // Google Ads Conversion
+  gtag('event', 'conversion', {
+    'send_to': 'AW-696993687/CONTACT_CONVERSION_LABEL', // Update with actual conversion label
+    'value': leadValue,
+    'currency': 'USD',
+    'transaction_id': leadData.form_id || Date.now().toString()
+  });
+  
+  // Google Analytics 4
+  gtag('event', 'generate_lead', {
+    currency: 'USD',
+    value: leadValue,
+    lead_type: leadData.form_type || 'contact',
+    vehicle_interest: leadData.vehicle_id
+  });
+  
+  // VLA Analytics
+  sendToVLA({
+    event_name: 'lead_generation',
+    event_data: {
+      form_type: leadData.form_type || 'contact',
+      vehicle_id: leadData.vehicle_id,
+      lead_source: leadData.source || 'website',
+      lead_value: leadValue,
+      customer_name: leadData.name,
+      customer_email: leadData.email,
+      customer_phone: leadData.phone,
+      message: leadData.message
+    },
+    page_url: window.location.href,
+    page_title: document.title
+  });
+}
+
+// Track test drive requests
+function trackTestDriveRequest(vehicleData, customerData) {
+  // Google Ads Conversion (High Value)
+  gtag('event', 'conversion', {
+    'send_to': 'AW-696993687/TEST_DRIVE_CONVERSION_LABEL', // Update with actual conversion label
+    'value': 1000,
+    'currency': 'USD',
+    'transaction_id': Date.now().toString()
+  });
+  
+  // Google Analytics 4
+  gtag('event', 'test_drive_request', {
+    currency: 'USD',
+    value: 1000,
+    vehicle_id: vehicleData.id,
+    vehicle_name: `${vehicleData.year} ${vehicleData.make} ${vehicleData.model}`
+  });
+  
+  // VLA Analytics
+  sendToVLA({
+    event_name: 'test_drive_request',
+    event_data: {
+      vehicle_id: vehicleData.id,
+      vehicle_data: vehicleData,
+      customer_data: customerData,
+      conversion_value: 1000
+    },
+    page_url: window.location.href,
+    page_title: document.title
+  });
+}
+
+// Track phone calls
+function trackPhoneCall(phoneNumber) {
+  // Google Ads Conversion
+  gtag('event', 'conversion', {
+    'send_to': 'AW-696993687/PHONE_CONVERSION_LABEL', // Update with actual conversion label
+    'value': 250,
+    'currency': 'USD'
+  });
+  
+  // Google Analytics 4
+  gtag('event', 'phone_call', {
+    method: 'click',
+    phone_number: phoneNumber,
+    value: 250
+  });
+  
+  // VLA Analytics
+  sendToVLA({
+    event_name: 'phone_call',
+    event_data: {
+      phone_number: phoneNumber,
+      call_source: 'website_click'
+    },
+    page_url: window.location.href,
+    page_title: document.title
+  });
+}
+
+// =================================
+// 🖱️ AUTOMATIC EVENT TRACKING
+// =================================
+
+// Track page views automatically
+window.addEventListener('load', function() {
+  // Google Analytics 4 (automatic)
+  gtag('event', 'page_view');
+  
+  // VLA Analytics
+  sendToVLA({
+    event_name: 'page_view',
+    event_data: {
+      page_category: getPageCategory(),
+      referrer: document.referrer
+    },
+    page_url: window.location.href,
+    page_title: document.title
+  });
+});
+
+// Determine page category
+function getPageCategory() {
+  const path = window.location.pathname.toLowerCase();
+  if (path.includes('/inventory') || path.includes('/vehicles')) return 'inventory';
+  if (path.includes('/contact')) return 'contact';
+  if (path.includes('/service')) return 'service';
+  if (path.includes('/parts')) return 'parts';
+  if (path.includes('/finance')) return 'finance';
+  if (path === '/' || path === '/home') return 'homepage';
+  return 'other';
+}
+
+// Auto-track clicks on important elements
+document.addEventListener('click', function(e) {
+  const element = e.target;
+  
+  // Track vehicle card/listing clicks
+  if (element.closest('.vehicle-card, .vehicle-listing, .inventory-item')) {
+    const vehicleElement = element.closest('.vehicle-card, .vehicle-listing, .inventory-item');
+    
+    // Try to extract vehicle data from data attributes or text content
+    const vehicleData = {
+      id: vehicleElement.dataset.vehicleId || vehicleElement.dataset.id,
+      vin: vehicleElement.dataset.vin,
+      make: vehicleElement.dataset.make || 'Nissan',
+      model: vehicleElement.dataset.model,
+      year: vehicleElement.dataset.year,
+      price: vehicleElement.dataset.price,
+      trim: vehicleElement.dataset.trim
+    };
+    
+    if (vehicleData.id || vehicleData.vin) {
+      trackVehicleView(vehicleData);
+    }
+  }
+  
+  // Track phone number clicks
+  if (element.tagName === 'A' && element.href.startsWith('tel:')) {
+    const phoneNumber = element.href.replace('tel:', '').replace(/\D/g, '');
+    trackPhoneCall(phoneNumber);
+  }
+  
+  // Track contact button clicks
+  if (element.matches('.contact-btn, .contact-button, .btn-contact') || 
+      element.closest('.contact-btn, .contact-button, .btn-contact')) {
+    gtag('event', 'contact_button_click');
+    sendToVLA({
+      event_name: 'contact_button_click',
+      event_data: {
+        button_text: element.textContent.trim(),
+        button_location: element.dataset.location || 'unknown'
+      },
+      page_url: window.location.href,
+      page_title: document.title
+    });
+  }
+  
+  // Track test drive button clicks
+  if (element.matches('.test-drive-btn, .testdrive-btn') || 
+      element.closest('.test-drive-btn, .testdrive-btn')) {
+    gtag('event', 'test_drive_button_click');
+    sendToVLA({
+      event_name: 'test_drive_button_click',
+      event_data: {
+        vehicle_id: element.dataset.vehicleId
+      },
+      page_url: window.location.href,
+      page_title: document.title
+    });
+  }
+});
+
+// =================================
+// 📋 FORM TRACKING
+// =================================
+
+// Auto-track form submissions
+document.addEventListener('submit', function(e) {
+  const form = e.target;
+  
+  // Only track forms with specific classes or IDs
+  if (form.matches('.contact-form, .lead-form, .inquiry-form, #contact-form, #lead-form')) {
+    const formData = new FormData(form);
+    const leadData = {
+      form_type: form.dataset.formType || 'contact',
+      vehicle_id: form.dataset.vehicleId || formData.get('vehicle_id'),
+      name: formData.get('name') || formData.get('first_name') + ' ' + formData.get('last_name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      message: formData.get('message') || formData.get('comments'),
+      source: 'website_form'
+    };
+    
+    trackLeadGeneration(leadData);
+  }
+});
+
+// =================================
+// 📺 MANUAL TRACKING FUNCTIONS
+// =================================
+
+// For developers to call manually when needed
+window.VLA = {
+  trackVehicleView: trackVehicleView,
+  trackLeadGeneration: trackLeadGeneration,
+  trackTestDriveRequest: trackTestDriveRequest,
+  trackPhoneCall: trackPhoneCall,
+  
+  // Example usage:
+  // VLA.trackVehicleView({
+  //   id: 'nissan-altima-2024-001',
+  //   make: 'Nissan',
+  //   model: 'Altima',
+  //   year: 2024,
+  //   price: 28500
+  // });
+};
+
+if (VLA_CONFIG.DEBUG) {
+  console.log('🎯 VLA Analytics Loaded for Nissan of Wichita Falls');
+  console.log('📊 Session ID:', getSessionId());
+  console.log('🔧 Use window.VLA object for manual tracking');
+}
+</script>
+
+<!-- 
+====================================
+📝 IMPLEMENTATION NOTES
+====================================
+
+1. REQUIRED UPDATES:
+   - Replace "G-MEASUREMENT_ID" with your actual GA4 Measurement ID
+   - Replace "your-vla-dashboard.vercel.app" with your actual VLA dashboard URL
+   - Update conversion labels (CONTACT_CONVERSION_LABEL, etc.) in Google Ads
+
+2. CONVERSION LABELS:
+   Go to Google Ads → Conversions → Create conversion action
+   Set up these conversion types:
+   - Contact Form Submission
+   - Test Drive Request  
+   - Phone Call
+   - Vehicle Inquiry
+
+3. TESTING:
+   - Set VLA_CONFIG.DEBUG = true to see console logs
+   - Check browser developer tools → Console for tracking events
+   - Verify events in Google Analytics Real-time reports
+   - Check VLA dashboard for incoming data
+
+4. DATA ATTRIBUTES:
+   Add these to your vehicle listings for better tracking:
+   - data-vehicle-id="unique-id"
+   - data-make="Nissan"
+   - data-model="Altima"
+   - data-year="2024"
+   - data-price="28500"
+
+5. FORM CLASSES:
+   Add these classes to your forms for automatic tracking:
+   - .contact-form
+   - .lead-form
+   - .inquiry-form
+
+====================================
+🚀 READY TO GO!
+====================================
+--> 
