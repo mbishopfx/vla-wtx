@@ -1,58 +1,57 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { createClient } from '@supabase/supabase-js'
 
-// Simple file-based storage for now (will be replaced with Supabase)
-import fs from 'fs'
-import path from 'path'
-
-const STORAGE_FILE = path.join(process.cwd(), 'data', 'saved_analyses.json')
-
-// Ensure data directory exists
-function ensureDataDir() {
-  const dataDir = path.dirname(STORAGE_FILE)
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true })
-  }
-}
-
-// Read existing analyses
-function readAnalyses() {
-  ensureDataDir()
-  if (!fs.existsSync(STORAGE_FILE)) {
-    return []
-  }
-  try {
-    const data = fs.readFileSync(STORAGE_FILE, 'utf8')
-    return JSON.parse(data)
-  } catch {
-    return []
-  }
-}
-
-// Write analyses to file
-function writeAnalyses(analyses: any[]) {
-  ensureDataDir()
-  fs.writeFileSync(STORAGE_FILE, JSON.stringify(analyses, null, 2))
-}
+// Initialize Supabase client
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+)
 
 export async function POST(request: NextRequest) {
   try {
     const analysisData = await request.json()
     
-    const savedAnalysis = {
-      id: crypto.randomUUID(),
-      ...analysisData,
-      created_at: new Date().toISOString()
+    // Prepare data for the vla_analyses table structure
+    const analysisToSave = {
+      session_name: analysisData.session_name || analysisData.name || 'Untitled Analysis',
+      session_id: analysisData.session_id || crypto.randomUUID(),
+      total_impressions: analysisData.total_impressions || 0,
+      total_clicks: analysisData.total_clicks || 0,
+      total_cost: analysisData.total_cost || 0,
+      total_conversions: analysisData.total_conversions || 0,
+      average_ctr: analysisData.average_ctr || 0,
+      average_cpc: analysisData.average_cpc || 0,
+      average_cpa: analysisData.average_cpa || 0,
+      analytics_data: analysisData.analytics_data || analysisData,
+      ai_insights: analysisData.ai_insights || null,
+      dealership_context: analysisData.dealership_context || null,
+      files_processed: analysisData.files_processed || 1,
+      analysis_type: analysisData.analysis_type || 'google_ads_campaign',
+      status: 'active',
+      tags: analysisData.tags || [],
+      notes: analysisData.notes || null,
+      client_name: analysisData.client_name || 'Unknown Client'
     }
 
-    // Read existing analyses and add new one
-    const analyses = readAnalyses()
-    analyses.unshift(savedAnalysis) // Add to beginning for newest first
-    writeAnalyses(analyses)
+    // Save to Supabase
+    const { data, error } = await supabase
+      .from('vla_analyses')
+      .insert(analysisToSave)
+      .select()
+      .single()
+
+    if (error) {
+      console.error('Supabase save error:', error)
+      return NextResponse.json(
+        { error: 'Failed to save analysis to database' },
+        { status: 500 }
+      )
+    }
 
     return NextResponse.json({
       success: true,
       message: 'Analysis saved successfully',
-      analysis: savedAnalysis
+      analysis: data
     })
 
   } catch (error) {

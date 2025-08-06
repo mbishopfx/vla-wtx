@@ -15,19 +15,26 @@ import {
   Menu,
   X,
   Home,
-  Settings,
-  Bell,
-  User,
   ChevronLeft,
   ChevronRight,
   Zap,
-  Activity,
   TrendingUp,
   HardDrive,
-  DollarSign
+  DollarSign,
+  Brain
 } from 'lucide-react'
 
 const agents = [
+  {
+    id: 'ai-assistant',
+    name: 'AI Assistant',
+    description: 'Intelligent help and guidance',
+    icon: Brain,
+    color: 'text-purple-400',
+    bgColor: 'bg-purple-500/10',
+    href: '/dashboard/agents/ai-assistant',
+    status: 'active'
+  },
   {
     id: 'competitor-intel',
     name: 'Competitor Intel',
@@ -58,9 +65,9 @@ const navigationItems = [
     isActive: false
   },
   {
-    name: 'Settings',
-    href: '/dashboard/settings',
-    icon: Settings,
+    name: 'Documentation',
+    href: '/dashboard/documentation',
+    icon: Search, // Using Search icon as a documentation/help icon
     isActive: false
   }
 ]
@@ -77,6 +84,7 @@ const tools = [
     status: 'active'
   }
 ]
+
 
 export default function DashboardLayout({
   children,
@@ -118,218 +126,152 @@ export default function DashboardLayout({
           {/* Header */}
           <div className="p-4 border-b border-slate-700/50">
             <div className="flex items-center justify-between">
-              {!isSidebarCollapsed && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="flex items-center gap-3"
-                >
-                  <div className="p-2 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg">
+              <div className="flex items-center gap-3">
+                {!isSidebarCollapsed && (
+                  <>
                     <img 
                       src="/9C0B4569-B802-4EBD-B07C-5A6914E7F683_4_5005_c.jpeg" 
-                      alt="TRD VLA Logo" 
-                      className="h-5 w-5 object-contain"
+                      alt="VLA Logo" 
+                      className="w-8 h-8 rounded object-cover"
                     />
-                  </div>
-                  <div>
-                    <h1 className="font-bold text-white">TRD VLA v2</h1>
-                    <p className="text-xs text-slate-400">AI Optimization</p>
-                  </div>
-                </motion.div>
-              )}
+                    <div>
+                      <h1 className="text-lg font-bold text-white">VLA Dashboard</h1>
+                      <p className="text-xs text-slate-400">Vehicle Listing Advisor</p>
+                    </div>
+                  </>
+                )}
+                {isSidebarCollapsed && (
+                  <img 
+                    src="/9C0B4569-B802-4EBD-B07C-5A6914E7F683_4_5005_c.jpeg" 
+                    alt="VLA" 
+                    className="w-8 h-8 rounded object-cover mx-auto"
+                  />
+                )}
+              </div>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-                className="text-slate-400 hover:text-white lg:flex hidden"
+                className="text-slate-400 hover:text-white hidden lg:flex"
               >
-                {isSidebarCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-slate-400 hover:text-white lg:hidden"
-              >
-                <X className="h-4 w-4" />
+                {isSidebarCollapsed ? (
+                  <ChevronRight className="h-4 w-4" />
+                ) : (
+                  <ChevronLeft className="h-4 w-4" />
+                )}
               </Button>
             </div>
           </div>
 
           {/* Navigation */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-6">
-            {/* Main Navigation */}
-            <div className="space-y-2">
-              {!isSidebarCollapsed && (
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
-                  Navigation
-                </p>
-              )}
+          <div className="flex-1 overflow-y-auto">
+            <div className="p-4 space-y-1">
               {navigationItems.map((item) => {
                 const isActive = pathname === item.href
                 return (
-                  <Link key={item.name} href={item.href}>
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className={`
-                        flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200
-                        ${isActive 
-                          ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25' 
-                          : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
-                        }
-                      `}
-                    >
-                      <item.icon className="h-5 w-5 flex-shrink-0" />
+                  <Link key={item.href} href={item.href}>
+                    <div className={`
+                      flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group
+                      ${isActive 
+                        ? 'bg-blue-500/20 text-blue-400 shadow-lg shadow-blue-500/25' 
+                        : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                      }
+                    `}>
+                      <item.icon className={`h-5 w-5 ${isActive ? 'text-blue-400' : 'text-slate-400 group-hover:text-white'}`} />
                       {!isSidebarCollapsed && (
                         <span className="font-medium">{item.name}</span>
                       )}
-                    </motion.div>
+                    </div>
                   </Link>
                 )
               })}
             </div>
 
             {/* AI Agents */}
-            <div className="space-y-2">
+            <div className="p-4">
               {!isSidebarCollapsed && (
-                <div className="flex items-center justify-between mb-3">
-                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                    AI Agents
-                  </p>
-                  <Badge className="bg-green-500/10 text-green-400 text-xs">
-                    2 Active
-                  </Badge>
-                </div>
+                <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
+                  AI Agents
+                </h3>
               )}
-              {agents.map((agent) => {
-                const isActive = pathname === agent.href
-                return (
-                  <Link key={agent.id} href={agent.href}>
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className={`
-                        group relative flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-200
-                        ${isActive 
-                          ? 'bg-gradient-to-r from-slate-800 to-slate-700 border border-slate-600' 
-                          : 'hover:bg-slate-800/50 border border-transparent'
-                        }
-                      `}
-                    >
+              <div className="space-y-1">
+                {agents.map((agent) => {
+                  const isActive = pathname === agent.href
+                  return (
+                    <Link key={agent.id} href={agent.href}>
                       <div className={`
-                        p-2 rounded-lg ${agent.bgColor} ${agent.color} 
-                        ${isActive ? 'shadow-lg' : 'group-hover:scale-110'}
-                        transition-transform duration-200
+                        flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group
+                        ${isActive 
+                          ? 'bg-slate-800/80 text-white shadow-lg' 
+                          : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                        }
                       `}>
-                        <agent.icon className="h-4 w-4" />
+                        <div className={`
+                          p-1.5 rounded-md transition-colors
+                          ${isActive ? agent.bgColor : 'bg-slate-800/50 group-hover:bg-slate-700/50'}
+                        `}>
+                          <agent.icon className={`h-4 w-4 ${isActive ? agent.color : 'text-slate-400 group-hover:text-white'}`} />
+                        </div>
+                        {!isSidebarCollapsed && (
+                          <div className="flex-1 min-w-0">
+                            <p className="font-medium truncate">{agent.name}</p>
+                            <p className="text-xs text-slate-500 truncate">{agent.description}</p>
+                          </div>
+                        )}
+                        {!isSidebarCollapsed && agent.status === 'active' && (
+                          <Badge variant="secondary" className="bg-green-500/20 text-green-400 text-xs">
+                            Active
+                          </Badge>
+                        )}
                       </div>
-                      {!isSidebarCollapsed && (
-                        <div className="flex-1 min-w-0">
-                          <p className={`
-                            font-medium text-sm truncate
-                            ${isActive ? 'text-white' : 'text-slate-300 group-hover:text-white'}
-                          `}>
-                            {agent.name}
-                          </p>
-                          <p className="text-xs text-slate-500 truncate">
-                            {agent.description}
-                          </p>
-                        </div>
-                      )}
-                      {!isSidebarCollapsed && agent.status === 'active' && (
-                        <div className="flex-shrink-0">
-                          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                        </div>
-                      )}
-                      {isSidebarCollapsed && (
-                        <div className="absolute left-full ml-2 px-2 py-1 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50 whitespace-nowrap">
-                          {agent.name}
-                        </div>
-                      )}
-                    </motion.div>
-                  </Link>
-                )
-              })}
+                    </Link>
+                  )
+                })}
+              </div>
             </div>
 
             {/* Tools */}
-            <div className="space-y-2">
+            <div className="p-4">
               {!isSidebarCollapsed && (
-                <div className="flex items-center justify-between mb-3">
-                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                    Tools
-                  </p>
-                  <Badge className="bg-blue-500/10 text-blue-400 text-xs">
-                    1 Available
-                  </Badge>
-                </div>
+                <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
+                  Tools
+                </h3>
               )}
-              {tools.map((tool) => {
-                const isActive = pathname === tool.href
-                return (
-                  <Link key={tool.id} href={tool.href}>
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className={`
-                        group relative flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-200
-                        ${isActive 
-                          ? 'bg-gradient-to-r from-slate-800 to-slate-700 border border-slate-600' 
-                          : 'hover:bg-slate-800/50 border border-transparent'
-                        }
-                      `}
-                    >
+              <div className="space-y-1">
+                {tools.map((tool) => {
+                  const isActive = pathname === tool.href
+                  return (
+                    <Link key={tool.id} href={tool.href}>
                       <div className={`
-                        p-2 rounded-lg ${tool.bgColor} ${tool.color} 
-                        ${isActive ? 'shadow-lg' : 'group-hover:scale-110'}
-                        transition-transform duration-200
+                        flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 group
+                        ${isActive 
+                          ? 'bg-slate-800/80 text-white shadow-lg' 
+                          : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                        }
                       `}>
-                        <tool.icon className="h-4 w-4" />
+                        <div className={`
+                          p-1.5 rounded-md transition-colors
+                          ${isActive ? tool.bgColor : 'bg-slate-800/50 group-hover:bg-slate-700/50'}
+                        `}>
+                          <tool.icon className={`h-4 w-4 ${isActive ? tool.color : 'text-slate-400 group-hover:text-white'}`} />
+                        </div>
+                        {!isSidebarCollapsed && (
+                          <div className="flex-1 min-w-0">
+                            <p className="font-medium truncate">{tool.name}</p>
+                            <p className="text-xs text-slate-500 truncate">{tool.description}</p>
+                          </div>
+                        )}
+                        {!isSidebarCollapsed && tool.status === 'active' && (
+                          <Badge variant="secondary" className="bg-green-500/20 text-green-400 text-xs">
+                            Active
+                          </Badge>
+                        )}
                       </div>
-                      {!isSidebarCollapsed && (
-                        <div className="flex-1 min-w-0">
-                          <p className={`
-                            font-medium text-sm truncate
-                            ${isActive ? 'text-white' : 'text-slate-300 group-hover:text-white'}
-                          `}>
-                            {tool.name}
-                          </p>
-                          <p className="text-xs text-slate-500 truncate">
-                            {tool.description}
-                          </p>
-                        </div>
-                      )}
-                      {!isSidebarCollapsed && tool.status === 'active' && (
-                        <div className="flex-shrink-0">
-                          <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-                        </div>
-                      )}
-                      {isSidebarCollapsed && (
-                        <div className="absolute left-full ml-2 px-2 py-1 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50 whitespace-nowrap">
-                          {tool.name}
-                        </div>
-                      )}
-                    </motion.div>
-                  </Link>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Footer */}
-          <div className="p-4 border-t border-slate-700/50">
-            {!isSidebarCollapsed && (
-              <div className="flex items-center gap-3 px-3 py-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                  <User className="h-4 w-4 text-white" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-white truncate">Admin User</p>
-                  <p className="text-xs text-slate-400 truncate">admin@vla-dashboard.com</p>
-                </div>
+                    </Link>
+                  )
+                })}
               </div>
-            )}
+            </div>
           </div>
         </div>
       </motion.div>
@@ -359,17 +301,6 @@ export default function DashboardLayout({
                  tools.find(tool => pathname === tool.href)?.description || 'Advanced analytics and insights'}
               </p>
             </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white relative">
-              <Bell className="h-5 w-5" />
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full flex items-center justify-center">
-                <span className="text-xs text-white font-bold">3</span>
-              </div>
-            </Button>
-            <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white">
-              <Activity className="h-5 w-5" />
-            </Button>
           </div>
         </div>
 

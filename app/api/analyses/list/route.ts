@@ -1,29 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
+import { createClient } from '@supabase/supabase-js'
 
-const STORAGE_FILE = path.join(process.cwd(), 'data', 'saved_analyses.json')
-
-// Read existing analyses
-function readAnalyses() {
-  if (!fs.existsSync(STORAGE_FILE)) {
-    return []
-  }
-  try {
-    const data = fs.readFileSync(STORAGE_FILE, 'utf8')
-    return JSON.parse(data)
-  } catch {
-    return []
-  }
-}
+// Initialize Supabase client
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+)
 
 export async function GET(request: NextRequest) {
   try {
-    const analyses = readAnalyses()
+    // Get analyses from Supabase, ordered by creation date (newest first)
+    const { data: analyses, error } = await supabase
+      .from('vla_analyses')
+      .select('*')
+      .eq('status', 'active')
+      .order('created_at', { ascending: false })
+
+    if (error) {
+      console.error('Supabase list error:', error)
+      return NextResponse.json(
+        { error: 'Failed to retrieve analyses from database' },
+        { status: 500 }
+      )
+    }
 
     return NextResponse.json({
       success: true,
-      analyses: analyses
+      analyses: analyses || []
     })
 
   } catch (error) {

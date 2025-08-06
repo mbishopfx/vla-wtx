@@ -1,30 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
+import { createClient } from '@supabase/supabase-js'
 
-const STORAGE_FILE = path.join(process.cwd(), 'data', 'saved_analyses.json')
-
-// Read existing analyses
-function readAnalyses() {
-  if (!fs.existsSync(STORAGE_FILE)) {
-    return []
-  }
-  try {
-    const data = fs.readFileSync(STORAGE_FILE, 'utf8')
-    return JSON.parse(data)
-  } catch {
-    return []
-  }
-}
-
-// Write analyses to file
-function writeAnalyses(analyses: any[]) {
-  const dataDir = path.dirname(STORAGE_FILE)
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true })
-  }
-  fs.writeFileSync(STORAGE_FILE, JSON.stringify(analyses, null, 2))
-}
+// Initialize Supabase client
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+)
 
 export async function DELETE(
   request: NextRequest,
@@ -40,19 +21,34 @@ export async function DELETE(
       )
     }
 
-    // Read existing analyses and remove the one with matching ID
-    const analyses = readAnalyses()
-    const filteredAnalyses = analyses.filter((analysis: any) => analysis.id !== analysisId)
-    
-    if (analyses.length === filteredAnalyses.length) {
+    // Delete the analysis from the database
+    const { data, error } = await supabase
+      .from('vla_analyses')
+      .delete()
+      .eq('id', analysisId)
+      .select()
+      .single()
+
+    if (error) {
+      console.error('Supabase delete error:', error)
+      if (error.code === 'PGRST116') {
+        return NextResponse.json(
+          { error: 'Analysis not found' },
+          { status: 404 }
+        )
+      }
+      return NextResponse.json(
+        { error: 'Failed to delete analysis' },
+        { status: 500 }
+      )
+    }
+
+    if (!data) {
       return NextResponse.json(
         { error: 'Analysis not found' },
         { status: 404 }
       )
     }
-
-    // Write back the filtered list
-    writeAnalyses(filteredAnalyses)
 
     return NextResponse.json({
       success: true,
