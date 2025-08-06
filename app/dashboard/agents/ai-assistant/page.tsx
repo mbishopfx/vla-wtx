@@ -12,18 +12,7 @@ import {
   MessageCircle, 
   Send, 
   Brain,
-  BarChart3,
-  Radar,
-  Package,
-  DollarSign,
-  FileText,
-  Lightbulb,
-  Clock,
-  CheckCircle,
-  AlertCircle,
-  Zap,
   HelpCircle,
-  Sparkles,
   Bot,
   User
 } from 'lucide-react'
@@ -175,22 +164,151 @@ What would you like help with today?`,
   }
 
   const formatMessageContent = (content: string) => {
-    // Basic formatting for better readability
-    return content
-      .split('\n')
-      .map((line, index) => (
-        <div key={index} className="mb-2">
-          {line.startsWith('**') && line.endsWith('**') ? (
-            <strong className="text-white">{line.slice(2, -2)}</strong>
-          ) : line.startsWith('🎯') || line.startsWith('📦') || line.startsWith('🚗') ? (
-            <div className="font-medium text-blue-400">{line}</div>
-          ) : line.startsWith('-') ? (
-            <div className="ml-4 text-slate-300">{line}</div>
-          ) : (
-            <span className="text-slate-300">{line}</span>
-          )}
-        </div>
-      ))
+    if (!content) return null
+
+    // Split content into lines for processing
+    const lines = content.split('\n')
+    const elements: JSX.Element[] = []
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i]
+      const trimmedLine = line.trim()
+
+      // Skip empty lines but add spacing
+      if (!trimmedLine) {
+        elements.push(<div key={i} className="h-2" />)
+        continue
+      }
+
+      // Handle main headers (### or ##)
+      if (trimmedLine.startsWith('###') || trimmedLine.startsWith('##')) {
+        const headerText = trimmedLine.replace(/^#+\s*/, '').replace(/\*\*/g, '')
+        elements.push(
+          <h3 key={i} className="text-white font-bold text-lg mt-6 mb-3 border-b border-slate-600 pb-2">
+            {headerText}
+          </h3>
+        )
+        continue
+      }
+
+      // Handle subheaders (#### )
+      if (trimmedLine.startsWith('####')) {
+        const headerText = trimmedLine.replace(/^#+\s*/, '').replace(/\*\*/g, '')
+        elements.push(
+          <h4 key={i} className="text-blue-400 font-semibold text-base mt-4 mb-2">
+            {headerText}
+          </h4>
+        )
+        continue
+      }
+
+      // Handle numbered sections (1. 2. etc.)
+      if (/^\d+\.\s/.test(trimmedLine)) {
+        const sectionText = trimmedLine.replace(/^\d+\.\s*/, '').replace(/\*\*/g, '')
+        elements.push(
+          <h4 key={i} className="text-purple-400 font-semibold text-base mt-4 mb-2 flex items-center">
+            <span className="bg-purple-500/20 text-purple-300 rounded-full w-6 h-6 flex items-center justify-center text-sm mr-2">
+              {trimmedLine.match(/^(\d+)/)?.[1]}
+            </span>
+            {sectionText}
+          </h4>
+        )
+        continue
+      }
+
+      // Handle bullet points with emoji/icons
+      if (trimmedLine.match(/^[🎯📦🚗📊💡🔧⚡🏆⚠️📱⏰🤖🔥💰🚀]/)) {
+        const content = formatInlineMarkdown(trimmedLine)
+        elements.push(
+          <div key={i} className="flex items-start gap-3 my-2 p-3 bg-slate-800/50 rounded-lg border-l-4 border-blue-500/50">
+            <div className="text-slate-200 leading-relaxed break-words" 
+                 dangerouslySetInnerHTML={{ __html: content }} />
+          </div>
+        )
+        continue
+      }
+
+      // Handle bullet points (- or •)
+      if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('• ')) {
+        const bulletContent = trimmedLine.substring(2).trim()
+        const formattedContent = formatInlineMarkdown(bulletContent)
+        elements.push(
+          <div key={i} className="flex items-start gap-2 ml-4 my-1">
+            <span className="text-blue-400 mt-1 text-sm">•</span>
+            <div className="text-slate-300 text-sm leading-relaxed break-words flex-1" 
+                 dangerouslySetInnerHTML={{ __html: formattedContent }} />
+          </div>
+        )
+        continue
+      }
+
+      // Handle indented bullet points
+      if (trimmedLine.startsWith('  - ') || trimmedLine.startsWith('    - ')) {
+        const bulletContent = trimmedLine.replace(/^\s*-\s*/, '')
+        const formattedContent = formatInlineMarkdown(bulletContent)
+        elements.push(
+          <div key={i} className="flex items-start gap-2 ml-8 my-1">
+            <span className="text-cyan-400 mt-1 text-xs">▸</span>
+            <div className="text-slate-400 text-sm leading-relaxed break-words flex-1" 
+                 dangerouslySetInnerHTML={{ __html: formattedContent }} />
+          </div>
+        )
+        continue
+      }
+
+      // Handle special action sections
+      if (trimmedLine.includes('IMMEDIATE ACTIONS') || trimmedLine.includes('SHORT TERM') || trimmedLine.includes('LONG TERM')) {
+        const content = formatInlineMarkdown(trimmedLine)
+        elements.push(
+          <div key={i} className="bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/20 rounded-lg p-4 my-3">
+            <div className="text-green-400 font-semibold text-lg" 
+                 dangerouslySetInnerHTML={{ __html: content }} />
+          </div>
+        )
+        continue
+      }
+
+      // Handle performance metrics or ROI sections
+      if (trimmedLine.includes('ROI') || trimmedLine.includes('Performance') || trimmedLine.includes('Projection')) {
+        const content = formatInlineMarkdown(trimmedLine)
+        elements.push(
+          <div key={i} className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-lg p-4 my-3">
+            <div className="text-purple-400 font-semibold" 
+                 dangerouslySetInnerHTML={{ __html: content }} />
+          </div>
+        )
+        continue
+      }
+
+      // Handle regular paragraphs
+      if (trimmedLine.length > 0) {
+        const formattedContent = formatInlineMarkdown(trimmedLine)
+        elements.push(
+          <div key={i} className="text-slate-300 text-sm leading-relaxed my-2 break-words" 
+               dangerouslySetInnerHTML={{ __html: formattedContent }} />
+        )
+      }
+    }
+
+    return <div className="space-y-1 max-w-full overflow-hidden">{elements}</div>
+  }
+
+  // Helper function to format inline markdown
+  const formatInlineMarkdown = (text: string): string => {
+    return text
+      // Bold text **text**
+      .replace(/\*\*([^*]+)\*\*/g, '<strong class="text-white font-semibold">$1</strong>')
+      // Italic text *text*
+      .replace(/\*([^*]+)\*/g, '<em class="text-blue-300 italic">$1</em>')
+      // Code blocks `code`
+      .replace(/`([^`]+)`/g, '<code class="bg-slate-700 text-cyan-300 px-2 py-1 rounded text-xs font-mono">$1</code>')
+      // Numbers with % or $
+      .replace(/(\$[\d,]+\.?\d*)/g, '<span class="text-green-400 font-semibold">$1</span>')
+      .replace(/([\d,]+\.?\d*%)/g, '<span class="text-blue-400 font-semibold">$1</span>')
+      // CTR, CPC, CPA metrics
+      .replace(/(CTR|CPC|CPA|ROI|ROAS):\s*([\d.]+%?)/g, '<span class="text-purple-400 font-medium">$1:</span> <span class="text-white font-semibold">$2</span>')
+      // Target indicators
+      .replace(/(Target:|Projected:|Current:)/g, '<span class="text-yellow-400 font-medium">$1</span>')
   }
 
   return (
@@ -245,10 +363,10 @@ What would you like help with today?`,
           )}
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <div className="max-w-5xl mx-auto">
           {/* Chat Interface */}
-          <div className="lg:col-span-3">
-            <Card className="bg-slate-900/50 border-slate-700 h-[600px] flex flex-col">
+          <div className="w-full">
+            <Card className="bg-slate-900/50 border-slate-700 h-[800px] flex flex-col">
               <CardHeader className="pb-4">
                 <CardTitle className="text-xl text-white flex items-center gap-2">
                   <MessageCircle className="h-6 w-6 text-blue-400" />
@@ -257,7 +375,7 @@ What would you like help with today?`,
               </CardHeader>
               
               {/* Messages */}
-              <CardContent className="flex-1 overflow-y-auto p-4 space-y-4">
+              <CardContent className="flex-1 overflow-y-auto overflow-x-hidden p-4 space-y-4">
                 <AnimatePresence>
                   {messages.map((message) => (
                     <motion.div
@@ -267,13 +385,13 @@ What would you like help with today?`,
                       exit={{ opacity: 0, y: -20 }}
                       className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
-                      <div className={`max-w-[80%] ${message.role === 'user' ? 'order-2' : 'order-1'}`}>
-                        <div className={`p-4 rounded-2xl ${
+                      <div className={`max-w-[85%] min-w-0 ${message.role === 'user' ? 'order-2' : 'order-1'}`}>
+                        <div className={`p-4 rounded-2xl break-words overflow-hidden shadow-lg ${
                           message.role === 'user' 
-                            ? 'bg-blue-600 text-white' 
-                            : 'bg-slate-800 text-slate-300'
+                            ? 'bg-gradient-to-br from-blue-600 to-blue-700 text-white border border-blue-500/30' 
+                            : 'bg-gradient-to-br from-slate-800 to-slate-900 text-slate-300 border border-slate-600/50'
                         }`}>
-                          <div className="prose prose-invert max-w-none">
+                          <div className="prose prose-invert max-w-none overflow-hidden">
                             {formatMessageContent(message.content)}
                           </div>
                           
@@ -306,10 +424,10 @@ What would you like help with today?`,
                         </div>
                       </div>
                       
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center shadow-lg ${
                         message.role === 'user' 
-                          ? 'bg-blue-600 order-1' 
-                          : 'bg-purple-600 order-2'
+                          ? 'bg-gradient-to-br from-blue-500 to-blue-700 order-1' 
+                          : 'bg-gradient-to-br from-purple-500 to-purple-700 order-2'
                       }`}>
                         {message.role === 'user' ? (
                           <User className="h-4 w-4 text-white" />
@@ -320,6 +438,46 @@ What would you like help with today?`,
                     </motion.div>
                   ))}
                 </AnimatePresence>
+
+                {/* Quick Question Suggestions - Show when only welcome message exists */}
+                {messages.length === 1 && !isLoading && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                    className="space-y-4 mt-6"
+                  >
+                    <div className="text-center mb-4">
+                      <p className="text-slate-400 text-sm">💡 Try asking one of these questions to get started:</p>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {quickQuestions.map((question, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.6 + index * 0.1 }}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          <Button
+                            variant="ghost"
+                            onClick={() => handleQuickQuestion(question)}
+                            className="w-full p-4 h-auto text-left bg-gradient-to-br from-slate-800/60 to-slate-900/40 border border-slate-700/50 hover:border-slate-600 hover:from-slate-700/60 hover:to-slate-800/40 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md"
+                          >
+                            <div className="flex items-start gap-3">
+                              <div className="bg-blue-500/20 rounded-lg p-1.5 mt-0.5 flex-shrink-0">
+                                <HelpCircle className="h-4 w-4 text-blue-400" />
+                              </div>
+                              <span className="text-slate-300 text-sm leading-relaxed break-words">{question}</span>
+                            </div>
+                          </Button>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
                 
                 {isLoading && (
                   <motion.div
@@ -327,13 +485,17 @@ What would you like help with today?`,
                     animate={{ opacity: 1, y: 0 }}
                     className="flex gap-3 justify-start"
                   >
-                    <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center shadow-lg">
                       <Bot className="h-4 w-4 text-white" />
                     </div>
-                    <div className="bg-slate-800 p-4 rounded-2xl">
-                      <div className="flex items-center gap-2 text-slate-400">
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-purple-400"></div>
-                        AI is thinking...
+                    <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-600/50 p-4 rounded-2xl shadow-lg">
+                      <div className="flex items-center gap-3 text-slate-400">
+                        <div className="flex space-x-1">
+                          <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                          <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                          <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                        </div>
+                        <span className="text-sm">AI is analyzing your request...</span>
                       </div>
                     </div>
                   </motion.div>
@@ -361,86 +523,6 @@ What would you like help with today?`,
                   </Button>
                 </form>
               </div>
-            </Card>
-          </div>
-
-          {/* Quick Actions & Tool Guide */}
-          <div className="space-y-6">
-            {/* Quick Questions */}
-            <Card className="bg-slate-900/50 border-slate-700">
-              <CardHeader>
-                <CardTitle className="text-lg text-white flex items-center gap-2">
-                  <Lightbulb className="h-5 w-5 text-yellow-400" />
-                  Quick Questions
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                {quickQuestions.map((question, index) => (
-                  <Button
-                    key={index}
-                    variant="ghost"
-                    className="w-full text-left text-sm text-slate-300 hover:text-white hover:bg-slate-800 p-3 h-auto"
-                    onClick={() => handleQuickQuestion(question)}
-                  >
-                    <HelpCircle className="h-4 w-4 mr-2 flex-shrink-0" />
-                    {question}
-                  </Button>
-                ))}
-              </CardContent>
-            </Card>
-
-            {/* Available Tools */}
-            <Card className="bg-slate-900/50 border-slate-700">
-              <CardHeader>
-                <CardTitle className="text-lg text-white flex items-center gap-2">
-                  <Zap className="h-5 w-5 text-blue-400" />
-                  VLA Dashboard Tools
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-sm">
-                    <BarChart3 className="h-4 w-4 text-blue-400" />
-                    <span className="text-slate-300">Dashboard - Google Ads Analysis</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Radar className="h-4 w-4 text-red-400" />
-                    <span className="text-slate-300">Competitor Intel</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Package className="h-4 w-4 text-cyan-400" />
-                    <span className="text-slate-300">Inventory Optimizer</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <DollarSign className="h-4 w-4 text-green-400" />
-                    <span className="text-slate-300">Nissan Campaign Creator</span>
-                  </div>
-                </div>
-                
-                <div className="pt-3 border-t border-slate-700">
-                  <p className="text-xs text-slate-400">
-                    Ask me about any of these tools for step-by-step guidance!
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Tips */}
-            <Card className="bg-gradient-to-br from-purple-500/10 to-blue-500/10 border-purple-500/20">
-              <CardHeader>
-                <CardTitle className="text-lg text-white flex items-center gap-2">
-                  <Sparkles className="h-5 w-5 text-purple-400" />
-                  Pro Tips
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="text-sm text-slate-300 space-y-2">
-                  <p>💡 I can analyze your actual uploaded files and data</p>
-                  <p>🎯 Ask specific questions about your campaign performance</p>
-                  <p>📊 Request help interpreting analysis results</p>
-                  <p>🔧 Get step-by-step tool usage guidance</p>
-                </div>
-              </CardContent>
             </Card>
           </div>
         </div>
