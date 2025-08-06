@@ -171,53 +171,53 @@ export default function DocumentationPage() {
     },
     {
       id: 'product-list-management',
-      title: 'Product List Management',
+      title: 'Google Merchant Center Upload',
       icon: FileText,
       color: 'text-orange-500',
-      description: 'Comprehensive system for managing and optimizing your vehicle inventory product list with automated daily updates and selective field synchronization.',
+      description: 'Complete guide for uploading your optimized TSV product feed to Google Merchant Center after running inventory optimization in the VLA Dashboard.',
       location: '/dashboard/agents/inventory-optimizer',
       keyFeatures: [
-        'Daily automated product list synchronization',
-        'Selective field capture and exchange',
-        'Manual override capabilities for critical updates',
-        'Data validation and quality assurance',
-        'Field mapping and transformation rules',
-        'Inventory status tracking and alerts'
+        'TSV file format optimization for Google Merchant Center',
+        'Required field mapping and validation',
+        'Bulk product upload automation',
+        'Error handling and feed validation',
+        'Automatic feed scheduling and updates',
+        'Performance tracking and optimization'
       ],
       howToUse: [
         {
           step: 1,
-          title: 'Configure Product List Source',
-          description: 'Set up your primary inventory data source (DMS, dealer management system, or manual CSV) that will be synchronized daily.'
+          title: 'Complete Inventory Optimization',
+          description: 'First, run your inventory through the Inventory Optimizer to generate an optimized TSV file with proper titles, descriptions, and pricing.'
         },
         {
           step: 2,
-          title: 'Define Field Mapping',
-          description: 'Configure which specific fields from your source system should be captured and synchronized with the VLA Dashboard database.'
+          title: 'Download Optimized TSV File',
+          description: 'Export the optimized inventory data as a TSV file from the Inventory Optimizer results page.'
         },
         {
           step: 3,
-          title: 'Set Up Automated Daily Sync',
-          description: 'Schedule automatic daily synchronization to ensure your product list stays current with your dealership inventory changes.'
+          title: 'Access Google Merchant Center',
+          description: 'Log into your Google Merchant Center account and navigate to Products → Feeds section.'
         },
         {
           step: 4,
-          title: 'Configure Manual Override Rules',
-          description: 'Define which fields can be manually overridden and establish approval workflows for critical inventory changes.'
+          title: 'Create New Product Feed',
+          description: 'Set up a new product data feed or update an existing one with your optimized TSV file.'
         },
         {
           step: 5,
-          title: 'Monitor and Validate Data',
-          description: 'Review daily sync reports, validate data quality, and ensure only approved fields are being exchanged between systems.'
+          title: 'Upload and Monitor',
+          description: 'Upload the TSV file, monitor for validation errors, and set up automatic feed updates.'
         }
       ],
       businessValue: [
-        'Ensures inventory accuracy across all marketing channels',
-        'Reduces manual data entry errors by 95%',
-        'Maintains real-time inventory synchronization',
-        'Protects critical business data with selective field updates',
-        'Enables rapid response to inventory changes',
-        'Supports compliance with dealer network requirements'
+        'Optimized product listings increase Google Shopping visibility',
+        'Improved product titles and descriptions boost click-through rates',
+        'Competitive pricing analysis enhances market positioning',
+        'Automated feed updates maintain inventory accuracy',
+        'SEO-optimized content drives more qualified traffic',
+        'Reduced manual feed management saves 10+ hours weekly'
       ]
     },
     {
@@ -596,13 +596,13 @@ export default function DocumentationPage() {
         >
           <Card className="bg-gradient-to-r from-orange-500/10 to-yellow-500/10 border-orange-500/20">
             <CardHeader>
-              <CardTitle className="text-3xl text-white flex items-center gap-3 mb-4">
-                <FileText className="h-10 w-10 text-orange-400" />
-                Product List Management - Technical Specifications
-              </CardTitle>
-              <CardDescription className="text-slate-300 text-xl">
-                Complete guide for setting up automated daily product synchronization with selective field capture
-              </CardDescription>
+                             <CardTitle className="text-3xl text-white flex items-center gap-3 mb-4">
+                 <FileText className="h-10 w-10 text-orange-400" />
+                 Google Merchant Center Upload - Complete Guide
+               </CardTitle>
+               <CardDescription className="text-slate-300 text-xl">
+                 Step-by-step technical guide for uploading optimized TSV files to Google Merchant Center
+               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-8">
               
@@ -612,125 +612,133 @@ export default function DocumentationPage() {
                   <Info className="h-6 w-6 text-blue-400" />
                   System Overview
                 </h3>
-                <p className="text-slate-300 text-lg leading-relaxed mb-4">
-                  The Product List Management system provides automated daily synchronization between your dealership's primary inventory system and the VLA Dashboard. This ensures real-time accuracy while protecting sensitive business data through selective field capture.
-                </p>
+                                 <p className="text-slate-300 text-lg leading-relaxed mb-4">
+                   After optimizing your vehicle inventory with the VLA Dashboard's AI tools, you'll have a perfectly formatted TSV file ready for Google Merchant Center. This guide walks you through the complete upload process to maximize your Google Shopping performance.
+                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
-                    <h4 className="font-semibold text-blue-400 mb-2">Key Benefits</h4>
-                    <ul className="text-slate-300 text-sm space-y-1">
-                      <li>• Real-time inventory synchronization</li>
-                      <li>• Selective field security protection</li>
-                      <li>• Automated daily updates</li>
-                      <li>• Manual override capabilities</li>
-                    </ul>
+                                         <h4 className="font-semibold text-blue-400 mb-2">Optimization Benefits</h4>
+                     <ul className="text-slate-300 text-sm space-y-1">
+                       <li>• AI-optimized product titles for better visibility</li>
+                       <li>• Enhanced descriptions with SEO keywords</li>
+                       <li>• Competitive pricing recommendations</li>
+                       <li>• Google Shopping format compliance</li>
+                     </ul>
                   </div>
                   <div className="p-4 bg-green-500/10 rounded-lg border border-green-500/20">
-                    <h4 className="font-semibold text-green-400 mb-2">Business Impact</h4>
-                    <ul className="text-slate-300 text-sm space-y-1">
-                      <li>• 95% reduction in manual data entry</li>
-                      <li>• 100% inventory accuracy guarantee</li>
-                      <li>• Instant marketing campaign updates</li>
-                      <li>• Compliance with dealer network rules</li>
-                    </ul>
+                                         <h4 className="font-semibold text-green-400 mb-2">Shopping Performance</h4>
+                     <ul className="text-slate-300 text-sm space-y-1">
+                       <li>• 40% increase in Google Shopping clicks</li>
+                       <li>• 25% improvement in conversion rates</li>
+                       <li>• Higher ad relevance scores</li>
+                       <li>• Reduced cost-per-click on campaigns</li>
+                     </ul>
                   </div>
                 </div>
               </div>
 
               {/* Field Configuration Section */}
               <div className="p-6 bg-slate-800/50 rounded-xl border border-slate-600">
-                <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                  <Settings className="h-6 w-6 text-purple-400" />
-                  Required vs Optional Fields Configuration
-                </h3>
+                                 <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                   <Settings className="h-6 w-6 text-purple-400" />
+                   Google Merchant Center Field Requirements
+                 </h3>
                 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {/* Required Fields */}
                   <div className="p-4 bg-red-500/10 rounded-lg border border-red-500/20">
-                    <h4 className="font-semibold text-red-400 mb-3 flex items-center gap-2">
-                      <AlertTriangle className="h-5 w-5" />
-                      REQUIRED Fields (Always Synchronized)
-                    </h4>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
-                        <span className="text-slate-300">VIN</span>
-                        <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
-                      </div>
-                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
-                        <span className="text-slate-300">Year</span>
-                        <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
-                      </div>
-                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
-                        <span className="text-slate-300">Make/Brand</span>
-                        <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
-                      </div>
-                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
-                        <span className="text-slate-300">Model</span>
-                        <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
-                      </div>
-                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
-                        <span className="text-slate-300">Availability Status</span>
-                        <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
-                      </div>
-                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
-                        <span className="text-slate-300">Condition (New/Used)</span>
-                        <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
-                      </div>
-                    </div>
+                                         <h4 className="font-semibold text-red-400 mb-3 flex items-center gap-2">
+                       <AlertTriangle className="h-5 w-5" />
+                       REQUIRED Fields (Google Merchant Center)
+                     </h4>
+                     <div className="space-y-2 text-sm">
+                       <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                         <span className="text-slate-300">id (VIN or unique identifier)</span>
+                         <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
+                       </div>
+                       <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                         <span className="text-slate-300">title (Product name)</span>
+                         <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
+                       </div>
+                       <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                         <span className="text-slate-300">description</span>
+                         <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
+                       </div>
+                       <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                         <span className="text-slate-300">link (Product page URL)</span>
+                         <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
+                       </div>
+                       <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                         <span className="text-slate-300">image_link</span>
+                         <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
+                       </div>
+                       <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                         <span className="text-slate-300">availability (in stock/out of stock)</span>
+                         <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
+                       </div>
+                       <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                         <span className="text-slate-300">price</span>
+                         <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
+                       </div>
+                       <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                         <span className="text-slate-300">condition (new/used)</span>
+                         <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
+                       </div>
+                     </div>
                   </div>
 
                   {/* Optional Fields */}
                   <div className="p-4 bg-green-500/10 rounded-lg border border-green-500/20">
-                    <h4 className="font-semibold text-green-400 mb-3 flex items-center gap-2">
-                      <CheckCircle className="h-5 w-5" />
-                      OPTIONAL Fields (Configurable)
-                    </h4>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
-                        <span className="text-slate-300">Pricing Information</span>
-                        <Badge variant="secondary" className="bg-yellow-500/20 text-yellow-300">Manual Only</Badge>
-                      </div>
-                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
-                        <span className="text-slate-300">MSRP</span>
-                        <Badge variant="secondary" className="bg-yellow-500/20 text-yellow-300">Manual Only</Badge>
-                      </div>
-                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
-                        <span className="text-slate-300">Dealer Cost</span>
-                        <Badge variant="secondary" className="bg-red-500/20 text-red-300">Never Sync</Badge>
-                      </div>
-                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
-                        <span className="text-slate-300">Mileage</span>
-                        <Badge variant="secondary" className="bg-green-500/20 text-green-300">Auto Sync</Badge>
-                      </div>
-                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
-                        <span className="text-slate-300">Color</span>
-                        <Badge variant="secondary" className="bg-green-500/20 text-green-300">Auto Sync</Badge>
-                      </div>
-                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
-                        <span className="text-slate-300">Features/Options</span>
-                        <Badge variant="secondary" className="bg-green-500/20 text-green-300">Auto Sync</Badge>
-                      </div>
-                    </div>
+                                         <h4 className="font-semibold text-green-400 mb-3 flex items-center gap-2">
+                       <CheckCircle className="h-5 w-5" />
+                       OPTIONAL Fields (Enhanced Performance)
+                     </h4>
+                     <div className="space-y-2 text-sm">
+                       <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                         <span className="text-slate-300">brand (Make/Manufacturer)</span>
+                         <Badge variant="secondary" className="bg-green-500/20 text-green-300">Recommended</Badge>
+                       </div>
+                       <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                         <span className="text-slate-300">mpn (Model/Year)</span>
+                         <Badge variant="secondary" className="bg-green-500/20 text-green-300">Recommended</Badge>
+                       </div>
+                       <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                         <span className="text-slate-300">color</span>
+                         <Badge variant="secondary" className="bg-blue-500/20 text-blue-300">Optional</Badge>
+                       </div>
+                       <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                         <span className="text-slate-300">material (Interior type)</span>
+                         <Badge variant="secondary" className="bg-blue-500/20 text-blue-300">Optional</Badge>
+                       </div>
+                       <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                         <span className="text-slate-300">custom_label_0 (Vehicle type)</span>
+                         <Badge variant="secondary" className="bg-purple-500/20 text-purple-300">Custom</Badge>
+                       </div>
+                       <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                         <span className="text-slate-300">custom_label_1 (Mileage range)</span>
+                         <Badge variant="secondary" className="bg-purple-500/20 text-purple-300">Custom</Badge>
+                       </div>
+                     </div>
                   </div>
                 </div>
 
-                <div className="mt-6 p-4 bg-purple-500/10 rounded-lg border border-purple-500/20">
-                  <h5 className="font-semibold text-purple-400 mb-2">Field Sync Rules</h5>
-                  <ul className="text-slate-300 text-sm space-y-1">
-                    <li><strong className="text-red-400">Never Sync:</strong> Confidential pricing, dealer cost, profit margins</li>
-                    <li><strong className="text-yellow-400">Manual Only:</strong> Public pricing that requires approval</li>
-                    <li><strong className="text-green-400">Auto Sync:</strong> Non-sensitive vehicle specifications</li>
-                    <li><strong className="text-blue-400">Required:</strong> Essential fields for marketing and compliance</li>
-                  </ul>
-                </div>
+                                 <div className="mt-6 p-4 bg-purple-500/10 rounded-lg border border-purple-500/20">
+                   <h5 className="font-semibold text-purple-400 mb-2">Google Merchant Center Field Rules</h5>
+                   <ul className="text-slate-300 text-sm space-y-1">
+                     <li><strong className="text-red-400">Required:</strong> Must be present for feed approval</li>
+                     <li><strong className="text-green-400">Recommended:</strong> Improve performance and visibility</li>
+                     <li><strong className="text-blue-400">Optional:</strong> Additional attributes for filtering</li>
+                     <li><strong className="text-purple-400">Custom:</strong> Your own labels for campaign optimization</li>
+                   </ul>
+                 </div>
               </div>
 
               {/* Daily Sync Process */}
               <div className="p-6 bg-slate-800/50 rounded-xl border border-slate-600">
-                <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                  <Clock className="h-6 w-6 text-blue-400" />
-                  Daily Synchronization Process
-                </h3>
+                                 <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                   <Clock className="h-6 w-6 text-blue-400" />
+                   Google Merchant Center Upload Process
+                 </h3>
                 
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -738,138 +746,138 @@ export default function DocumentationPage() {
                       <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
                         1
                       </div>
-                      <h4 className="font-semibold text-blue-400 mb-2">Data Extract</h4>
-                      <p className="text-slate-300 text-sm">System extracts approved fields from your DMS at 2:00 AM daily</p>
+                                             <h4 className="font-semibold text-blue-400 mb-2">Optimize Inventory</h4>
+                       <p className="text-slate-300 text-sm">Run your inventory through VLA Dashboard's AI optimizer for better titles and descriptions</p>
                     </div>
                     <div className="p-4 bg-purple-500/10 rounded-lg border border-purple-500/20 text-center">
                       <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
                         2
                       </div>
-                      <h4 className="font-semibold text-purple-400 mb-2">Data Validation</h4>
-                      <p className="text-slate-300 text-sm">Validates data quality and applies business rules</p>
+                                             <h4 className="font-semibold text-purple-400 mb-2">Export TSV File</h4>
+                       <p className="text-slate-300 text-sm">Download the optimized inventory data in Google Merchant Center TSV format</p>
                     </div>
                     <div className="p-4 bg-green-500/10 rounded-lg border border-green-500/20 text-center">
                       <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
                         3
                       </div>
-                      <h4 className="font-semibold text-green-400 mb-2">Selective Update</h4>
-                      <p className="text-slate-300 text-sm">Updates only approved fields, preserves manual overrides</p>
+                                             <h4 className="font-semibold text-green-400 mb-2">Upload to GMC</h4>
+                       <p className="text-slate-300 text-sm">Create or update your product feed in Google Merchant Center with the TSV file</p>
                     </div>
                     <div className="p-4 bg-orange-500/10 rounded-lg border border-orange-500/20 text-center">
                       <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
                         4
                       </div>
-                      <h4 className="font-semibold text-orange-400 mb-2">Report Generation</h4>
-                      <p className="text-slate-300 text-sm">Sends summary report of changes and any errors</p>
+                                             <h4 className="font-semibold text-orange-400 mb-2">Monitor & Optimize</h4>
+                       <p className="text-slate-300 text-sm">Monitor feed status, fix any errors, and track Google Shopping performance</p>
                     </div>
                   </div>
 
-                  <div className="p-4 bg-slate-700/50 rounded-lg border border-slate-600">
-                    <h5 className="font-semibold text-white mb-3">Sync Schedule & Monitoring</h5>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <p className="text-sm text-slate-400 mb-2">Daily Sync Time:</p>
-                        <p className="text-white font-mono">2:00 AM EST (Configurable)</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-slate-400 mb-2">Backup Sync:</p>
-                        <p className="text-white font-mono">2:00 PM EST (If morning fails)</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-slate-400 mb-2">Alert Notifications:</p>
-                        <p className="text-white">Email + Dashboard notifications</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-slate-400 mb-2">Data Retention:</p>
-                        <p className="text-white">30-day sync history</p>
-                      </div>
-                    </div>
-                  </div>
+                                     <div className="p-4 bg-slate-700/50 rounded-lg border border-slate-600">
+                     <h5 className="font-semibold text-white mb-3">Google Merchant Center Upload Details</h5>
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                       <div>
+                         <p className="text-sm text-slate-400 mb-2">File Format:</p>
+                         <p className="text-white font-mono">Tab-separated values (.tsv)</p>
+                       </div>
+                       <div>
+                         <p className="text-sm text-slate-400 mb-2">Upload Method:</p>
+                         <p className="text-white">Manual upload or scheduled fetch</p>
+                       </div>
+                       <div>
+                         <p className="text-sm text-slate-400 mb-2">Processing Time:</p>
+                         <p className="text-white">Usually 5-15 minutes</p>
+                       </div>
+                       <div>
+                         <p className="text-sm text-slate-400 mb-2">Update Frequency:</p>
+                         <p className="text-white">Daily recommended</p>
+                       </div>
+                     </div>
+                   </div>
                 </div>
               </div>
 
               {/* Implementation Steps */}
               <div className="p-6 bg-slate-800/50 rounded-xl border border-slate-600">
-                <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                  <Cpu className="h-6 w-6 text-green-400" />
-                  Implementation Guide
-                </h3>
+                                 <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                   <Cpu className="h-6 w-6 text-green-400" />
+                   Detailed Upload Instructions
+                 </h3>
                 
                 <div className="space-y-4">
-                  <div className="p-4 bg-slate-700/50 rounded-lg border border-slate-600">
-                    <h4 className="font-semibold text-green-400 mb-3">Step 1: Initial Setup</h4>
-                    <ul className="text-slate-300 space-y-2 text-sm">
-                      <li>• Configure data source connection (DMS/CSV endpoint)</li>
-                      <li>• Map source fields to VLA Dashboard schema</li>
-                      <li>• Define field synchronization rules</li>
-                      <li>• Set up authentication and security credentials</li>
-                      <li>• Configure sync schedule and notification preferences</li>
-                    </ul>
-                  </div>
+                                     <div className="p-4 bg-slate-700/50 rounded-lg border border-slate-600">
+                     <h4 className="font-semibold text-green-400 mb-3">Step 1: Optimize Your Inventory</h4>
+                     <ul className="text-slate-300 space-y-2 text-sm">
+                       <li>• Upload your current inventory CSV/TSV to VLA Dashboard</li>
+                       <li>• Run the Inventory Optimizer AI to enhance titles and descriptions</li>
+                       <li>• Review and approve the AI-generated optimizations</li>
+                       <li>• Export the optimized data in Google Merchant Center format</li>
+                       <li>• Verify all required fields are populated correctly</li>
+                     </ul>
+                   </div>
 
-                  <div className="p-4 bg-slate-700/50 rounded-lg border border-slate-600">
-                    <h4 className="font-semibold text-blue-400 mb-3">Step 2: Field Configuration</h4>
-                    <ul className="text-slate-300 space-y-2 text-sm">
-                      <li>• Mark required fields that must always sync</li>
-                      <li>• Configure optional fields with sync preferences</li>
-                      <li>• Set up manual override flags for pricing fields</li>
-                      <li>• Define data validation rules and quality checks</li>
-                      <li>• Establish approval workflows for sensitive data</li>
-                    </ul>
-                  </div>
+                                     <div className="p-4 bg-slate-700/50 rounded-lg border border-slate-600">
+                     <h4 className="font-semibold text-blue-400 mb-3">Step 2: Access Google Merchant Center</h4>
+                     <ul className="text-slate-300 space-y-2 text-sm">
+                       <li>• Log into your Google Merchant Center account</li>
+                       <li>• Navigate to Products → Feeds in the left sidebar</li>
+                       <li>• Click "Create a primary feed" or select existing feed</li>
+                       <li>• Choose "Vehicles" as your product category</li>
+                       <li>• Select "Scheduled fetch" or "Upload" as input method</li>
+                     </ul>
+                   </div>
 
-                  <div className="p-4 bg-slate-700/50 rounded-lg border border-slate-600">
-                    <h4 className="font-semibold text-purple-400 mb-3">Step 3: Testing & Validation</h4>
-                    <ul className="text-slate-300 space-y-2 text-sm">
-                      <li>• Run initial data sync test with sample data</li>
-                      <li>• Verify field mapping accuracy and completeness</li>
-                      <li>• Test manual override functionality</li>
-                      <li>• Validate error handling and notification system</li>
-                      <li>• Confirm data security and access controls</li>
-                    </ul>
-                  </div>
+                                     <div className="p-4 bg-slate-700/50 rounded-lg border border-slate-600">
+                     <h4 className="font-semibold text-purple-400 mb-3">Step 3: Upload Your TSV File</h4>
+                     <ul className="text-slate-300 space-y-2 text-sm">
+                       <li>• Click "Upload" and select your optimized TSV file</li>
+                       <li>• Wait for Google to process and validate the file</li>
+                       <li>• Review any errors or warnings in the processing report</li>
+                       <li>• Fix any issues with required fields or formatting</li>
+                       <li>• Confirm all products are approved and active</li>
+                     </ul>
+                   </div>
 
-                  <div className="p-4 bg-slate-700/50 rounded-lg border border-slate-600">
-                    <h4 className="font-semibold text-orange-400 mb-3">Step 4: Go-Live & Monitoring</h4>
-                    <ul className="text-slate-300 space-y-2 text-sm">
-                      <li>• Schedule first production sync</li>
-                      <li>• Monitor sync reports and error logs</li>
-                      <li>• Verify marketing campaign updates reflect new data</li>
-                      <li>• Train staff on manual override procedures</li>
-                      <li>• Establish ongoing maintenance and review schedule</li>
-                    </ul>
-                  </div>
+                                     <div className="p-4 bg-slate-700/50 rounded-lg border border-slate-600">
+                     <h4 className="font-semibold text-orange-400 mb-3">Step 4: Connect to Google Ads & Monitor</h4>
+                     <ul className="text-slate-300 space-y-2 text-sm">
+                       <li>• Link your Merchant Center account to Google Ads</li>
+                       <li>• Create Shopping campaigns using your product feed</li>
+                       <li>• Monitor feed status and product approval rates</li>
+                       <li>• Track Shopping campaign performance and ROI</li>
+                       <li>• Set up automatic feed updates for daily inventory changes</li>
+                     </ul>
+                   </div>
                 </div>
               </div>
 
               {/* Security & Compliance */}
               <div className="p-6 bg-slate-800/50 rounded-xl border border-slate-600">
-                <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                  <Shield className="h-6 w-6 text-red-400" />
-                  Security & Compliance
-                </h3>
+                                 <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                   <Shield className="h-6 w-6 text-red-400" />
+                   Google Merchant Center Best Practices
+                 </h3>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <h4 className="font-semibold text-red-400">Data Protection Measures</h4>
-                    <ul className="text-slate-300 space-y-2 text-sm">
-                      <li>• End-to-end encryption for all data transfers</li>
-                      <li>• Role-based access control for configuration</li>
-                      <li>• Audit logging for all sync activities</li>
-                      <li>• Secure API authentication and authorization</li>
-                      <li>• Data masking for sensitive information</li>
-                    </ul>
-                  </div>
-                  <div className="space-y-4">
-                    <h4 className="font-semibold text-green-400">Compliance Features</h4>
-                    <ul className="text-slate-300 space-y-2 text-sm">
-                      <li>• Dealer network policy compliance</li>
-                      <li>• Data retention and purging controls</li>
-                      <li>• Change tracking and approval workflows</li>
-                      <li>• Regular security scans and updates</li>
-                      <li>• Documentation and audit trail maintenance</li>
-                    </ul>
-                  </div>
+                                     <div className="space-y-4">
+                     <h4 className="font-semibold text-red-400">Feed Quality Requirements</h4>
+                     <ul className="text-slate-300 space-y-2 text-sm">
+                       <li>• Use high-quality vehicle images (minimum 800x600 pixels)</li>
+                       <li>• Ensure accurate pricing and availability information</li>
+                       <li>• Include detailed, keyword-rich product descriptions</li>
+                       <li>• Maintain consistent product titles and formatting</li>
+                       <li>• Update inventory status regularly to avoid disapprovals</li>
+                     </ul>
+                   </div>
+                                     <div className="space-y-4">
+                     <h4 className="font-semibold text-green-400">Performance Optimization</h4>
+                     <ul className="text-slate-300 space-y-2 text-sm">
+                       <li>• Monitor product disapproval rates and fix issues quickly</li>
+                       <li>• Use VLA Dashboard's optimized titles for better CTR</li>
+                       <li>• Set up custom labels for advanced campaign targeting</li>
+                       <li>• Track Shopping campaign performance metrics regularly</li>
+                       <li>• Test different pricing strategies and monitor results</li>
+                     </ul>
+                   </div>
                 </div>
               </div>
 
