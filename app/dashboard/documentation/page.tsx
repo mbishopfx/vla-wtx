@@ -36,7 +36,10 @@ import {
   LineChart,
   ArrowRight,
   Workflow,
-  Gauge
+  Gauge,
+  FileText,
+  Settings,
+  AlertTriangle
 } from 'lucide-react'
 import {
   Accordion,
@@ -164,6 +167,57 @@ export default function DocumentationPage() {
         'Eliminates need for external support or training',
         'Accelerates decision-making with context-aware insights',
         'Available 24/7 with comprehensive tool knowledge'
+      ]
+    },
+    {
+      id: 'product-list-management',
+      title: 'Product List Management',
+      icon: FileText,
+      color: 'text-orange-500',
+      description: 'Comprehensive system for managing and optimizing your vehicle inventory product list with automated daily updates and selective field synchronization.',
+      location: '/dashboard/agents/inventory-optimizer',
+      keyFeatures: [
+        'Daily automated product list synchronization',
+        'Selective field capture and exchange',
+        'Manual override capabilities for critical updates',
+        'Data validation and quality assurance',
+        'Field mapping and transformation rules',
+        'Inventory status tracking and alerts'
+      ],
+      howToUse: [
+        {
+          step: 1,
+          title: 'Configure Product List Source',
+          description: 'Set up your primary inventory data source (DMS, dealer management system, or manual CSV) that will be synchronized daily.'
+        },
+        {
+          step: 2,
+          title: 'Define Field Mapping',
+          description: 'Configure which specific fields from your source system should be captured and synchronized with the VLA Dashboard database.'
+        },
+        {
+          step: 3,
+          title: 'Set Up Automated Daily Sync',
+          description: 'Schedule automatic daily synchronization to ensure your product list stays current with your dealership inventory changes.'
+        },
+        {
+          step: 4,
+          title: 'Configure Manual Override Rules',
+          description: 'Define which fields can be manually overridden and establish approval workflows for critical inventory changes.'
+        },
+        {
+          step: 5,
+          title: 'Monitor and Validate Data',
+          description: 'Review daily sync reports, validate data quality, and ensure only approved fields are being exchanged between systems.'
+        }
+      ],
+      businessValue: [
+        'Ensures inventory accuracy across all marketing channels',
+        'Reduces manual data entry errors by 95%',
+        'Maintains real-time inventory synchronization',
+        'Protects critical business data with selective field updates',
+        'Enables rapid response to inventory changes',
+        'Supports compliance with dealer network requirements'
       ]
     },
     {
@@ -529,6 +583,296 @@ export default function DocumentationPage() {
                   </p>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/* Product List Management Detailed Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="mt-12"
+        >
+          <Card className="bg-gradient-to-r from-orange-500/10 to-yellow-500/10 border-orange-500/20">
+            <CardHeader>
+              <CardTitle className="text-3xl text-white flex items-center gap-3 mb-4">
+                <FileText className="h-10 w-10 text-orange-400" />
+                Product List Management - Technical Specifications
+              </CardTitle>
+              <CardDescription className="text-slate-300 text-xl">
+                Complete guide for setting up automated daily product synchronization with selective field capture
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-8">
+              
+              {/* Overview Section */}
+              <div className="p-6 bg-slate-800/50 rounded-xl border border-slate-600">
+                <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                  <Info className="h-6 w-6 text-blue-400" />
+                  System Overview
+                </h3>
+                <p className="text-slate-300 text-lg leading-relaxed mb-4">
+                  The Product List Management system provides automated daily synchronization between your dealership's primary inventory system and the VLA Dashboard. This ensures real-time accuracy while protecting sensitive business data through selective field capture.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
+                    <h4 className="font-semibold text-blue-400 mb-2">Key Benefits</h4>
+                    <ul className="text-slate-300 text-sm space-y-1">
+                      <li>• Real-time inventory synchronization</li>
+                      <li>• Selective field security protection</li>
+                      <li>• Automated daily updates</li>
+                      <li>• Manual override capabilities</li>
+                    </ul>
+                  </div>
+                  <div className="p-4 bg-green-500/10 rounded-lg border border-green-500/20">
+                    <h4 className="font-semibold text-green-400 mb-2">Business Impact</h4>
+                    <ul className="text-slate-300 text-sm space-y-1">
+                      <li>• 95% reduction in manual data entry</li>
+                      <li>• 100% inventory accuracy guarantee</li>
+                      <li>• Instant marketing campaign updates</li>
+                      <li>• Compliance with dealer network rules</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Field Configuration Section */}
+              <div className="p-6 bg-slate-800/50 rounded-xl border border-slate-600">
+                <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                  <Settings className="h-6 w-6 text-purple-400" />
+                  Required vs Optional Fields Configuration
+                </h3>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Required Fields */}
+                  <div className="p-4 bg-red-500/10 rounded-lg border border-red-500/20">
+                    <h4 className="font-semibold text-red-400 mb-3 flex items-center gap-2">
+                      <AlertTriangle className="h-5 w-5" />
+                      REQUIRED Fields (Always Synchronized)
+                    </h4>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                        <span className="text-slate-300">VIN</span>
+                        <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
+                      </div>
+                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                        <span className="text-slate-300">Year</span>
+                        <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
+                      </div>
+                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                        <span className="text-slate-300">Make/Brand</span>
+                        <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
+                      </div>
+                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                        <span className="text-slate-300">Model</span>
+                        <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
+                      </div>
+                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                        <span className="text-slate-300">Availability Status</span>
+                        <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
+                      </div>
+                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                        <span className="text-slate-300">Condition (New/Used)</span>
+                        <Badge variant="secondary" className="bg-red-500/20 text-red-300">Required</Badge>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Optional Fields */}
+                  <div className="p-4 bg-green-500/10 rounded-lg border border-green-500/20">
+                    <h4 className="font-semibold text-green-400 mb-3 flex items-center gap-2">
+                      <CheckCircle className="h-5 w-5" />
+                      OPTIONAL Fields (Configurable)
+                    </h4>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                        <span className="text-slate-300">Pricing Information</span>
+                        <Badge variant="secondary" className="bg-yellow-500/20 text-yellow-300">Manual Only</Badge>
+                      </div>
+                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                        <span className="text-slate-300">MSRP</span>
+                        <Badge variant="secondary" className="bg-yellow-500/20 text-yellow-300">Manual Only</Badge>
+                      </div>
+                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                        <span className="text-slate-300">Dealer Cost</span>
+                        <Badge variant="secondary" className="bg-red-500/20 text-red-300">Never Sync</Badge>
+                      </div>
+                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                        <span className="text-slate-300">Mileage</span>
+                        <Badge variant="secondary" className="bg-green-500/20 text-green-300">Auto Sync</Badge>
+                      </div>
+                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                        <span className="text-slate-300">Color</span>
+                        <Badge variant="secondary" className="bg-green-500/20 text-green-300">Auto Sync</Badge>
+                      </div>
+                      <div className="flex justify-between items-center p-2 bg-slate-700/50 rounded">
+                        <span className="text-slate-300">Features/Options</span>
+                        <Badge variant="secondary" className="bg-green-500/20 text-green-300">Auto Sync</Badge>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 p-4 bg-purple-500/10 rounded-lg border border-purple-500/20">
+                  <h5 className="font-semibold text-purple-400 mb-2">Field Sync Rules</h5>
+                  <ul className="text-slate-300 text-sm space-y-1">
+                    <li><strong className="text-red-400">Never Sync:</strong> Confidential pricing, dealer cost, profit margins</li>
+                    <li><strong className="text-yellow-400">Manual Only:</strong> Public pricing that requires approval</li>
+                    <li><strong className="text-green-400">Auto Sync:</strong> Non-sensitive vehicle specifications</li>
+                    <li><strong className="text-blue-400">Required:</strong> Essential fields for marketing and compliance</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Daily Sync Process */}
+              <div className="p-6 bg-slate-800/50 rounded-xl border border-slate-600">
+                <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                  <Clock className="h-6 w-6 text-blue-400" />
+                  Daily Synchronization Process
+                </h3>
+                
+                <div className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div className="p-4 bg-blue-500/10 rounded-lg border border-blue-500/20 text-center">
+                      <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
+                        1
+                      </div>
+                      <h4 className="font-semibold text-blue-400 mb-2">Data Extract</h4>
+                      <p className="text-slate-300 text-sm">System extracts approved fields from your DMS at 2:00 AM daily</p>
+                    </div>
+                    <div className="p-4 bg-purple-500/10 rounded-lg border border-purple-500/20 text-center">
+                      <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
+                        2
+                      </div>
+                      <h4 className="font-semibold text-purple-400 mb-2">Data Validation</h4>
+                      <p className="text-slate-300 text-sm">Validates data quality and applies business rules</p>
+                    </div>
+                    <div className="p-4 bg-green-500/10 rounded-lg border border-green-500/20 text-center">
+                      <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
+                        3
+                      </div>
+                      <h4 className="font-semibold text-green-400 mb-2">Selective Update</h4>
+                      <p className="text-slate-300 text-sm">Updates only approved fields, preserves manual overrides</p>
+                    </div>
+                    <div className="p-4 bg-orange-500/10 rounded-lg border border-orange-500/20 text-center">
+                      <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
+                        4
+                      </div>
+                      <h4 className="font-semibold text-orange-400 mb-2">Report Generation</h4>
+                      <p className="text-slate-300 text-sm">Sends summary report of changes and any errors</p>
+                    </div>
+                  </div>
+
+                  <div className="p-4 bg-slate-700/50 rounded-lg border border-slate-600">
+                    <h5 className="font-semibold text-white mb-3">Sync Schedule & Monitoring</h5>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-sm text-slate-400 mb-2">Daily Sync Time:</p>
+                        <p className="text-white font-mono">2:00 AM EST (Configurable)</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-slate-400 mb-2">Backup Sync:</p>
+                        <p className="text-white font-mono">2:00 PM EST (If morning fails)</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-slate-400 mb-2">Alert Notifications:</p>
+                        <p className="text-white">Email + Dashboard notifications</p>
+                      </div>
+                      <div>
+                        <p className="text-sm text-slate-400 mb-2">Data Retention:</p>
+                        <p className="text-white">30-day sync history</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Implementation Steps */}
+              <div className="p-6 bg-slate-800/50 rounded-xl border border-slate-600">
+                <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                  <Cpu className="h-6 w-6 text-green-400" />
+                  Implementation Guide
+                </h3>
+                
+                <div className="space-y-4">
+                  <div className="p-4 bg-slate-700/50 rounded-lg border border-slate-600">
+                    <h4 className="font-semibold text-green-400 mb-3">Step 1: Initial Setup</h4>
+                    <ul className="text-slate-300 space-y-2 text-sm">
+                      <li>• Configure data source connection (DMS/CSV endpoint)</li>
+                      <li>• Map source fields to VLA Dashboard schema</li>
+                      <li>• Define field synchronization rules</li>
+                      <li>• Set up authentication and security credentials</li>
+                      <li>• Configure sync schedule and notification preferences</li>
+                    </ul>
+                  </div>
+
+                  <div className="p-4 bg-slate-700/50 rounded-lg border border-slate-600">
+                    <h4 className="font-semibold text-blue-400 mb-3">Step 2: Field Configuration</h4>
+                    <ul className="text-slate-300 space-y-2 text-sm">
+                      <li>• Mark required fields that must always sync</li>
+                      <li>• Configure optional fields with sync preferences</li>
+                      <li>• Set up manual override flags for pricing fields</li>
+                      <li>• Define data validation rules and quality checks</li>
+                      <li>• Establish approval workflows for sensitive data</li>
+                    </ul>
+                  </div>
+
+                  <div className="p-4 bg-slate-700/50 rounded-lg border border-slate-600">
+                    <h4 className="font-semibold text-purple-400 mb-3">Step 3: Testing & Validation</h4>
+                    <ul className="text-slate-300 space-y-2 text-sm">
+                      <li>• Run initial data sync test with sample data</li>
+                      <li>• Verify field mapping accuracy and completeness</li>
+                      <li>• Test manual override functionality</li>
+                      <li>• Validate error handling and notification system</li>
+                      <li>• Confirm data security and access controls</li>
+                    </ul>
+                  </div>
+
+                  <div className="p-4 bg-slate-700/50 rounded-lg border border-slate-600">
+                    <h4 className="font-semibold text-orange-400 mb-3">Step 4: Go-Live & Monitoring</h4>
+                    <ul className="text-slate-300 space-y-2 text-sm">
+                      <li>• Schedule first production sync</li>
+                      <li>• Monitor sync reports and error logs</li>
+                      <li>• Verify marketing campaign updates reflect new data</li>
+                      <li>• Train staff on manual override procedures</li>
+                      <li>• Establish ongoing maintenance and review schedule</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Security & Compliance */}
+              <div className="p-6 bg-slate-800/50 rounded-xl border border-slate-600">
+                <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                  <Shield className="h-6 w-6 text-red-400" />
+                  Security & Compliance
+                </h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="font-semibold text-red-400">Data Protection Measures</h4>
+                    <ul className="text-slate-300 space-y-2 text-sm">
+                      <li>• End-to-end encryption for all data transfers</li>
+                      <li>• Role-based access control for configuration</li>
+                      <li>• Audit logging for all sync activities</li>
+                      <li>• Secure API authentication and authorization</li>
+                      <li>• Data masking for sensitive information</li>
+                    </ul>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="font-semibold text-green-400">Compliance Features</h4>
+                    <ul className="text-slate-300 space-y-2 text-sm">
+                      <li>• Dealer network policy compliance</li>
+                      <li>• Data retention and purging controls</li>
+                      <li>• Change tracking and approval workflows</li>
+                      <li>• Regular security scans and updates</li>
+                      <li>• Documentation and audit trail maintenance</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
             </CardContent>
           </Card>
         </motion.div>
